@@ -1,5 +1,6 @@
 package com.example.mobil_alkfejl_proj;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,11 +14,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegisterActivity.class.getName();
+    private static final String PREF_KEY = MainActivity.class.getPackage().toString();
+
 
     EditText userNameEditText;
     EditText userEmailEditText;
     EditText userPasswordEditText;
     EditText userPasswordAgainEditText;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,14 @@ public class RegisterActivity extends AppCompatActivity {
         userEmailEditText = findViewById(R.id.userEmailEditText);
         userPasswordEditText = findViewById(R.id.userPasswordEditText);
         userPasswordAgainEditText = findViewById(R.id.userPasswordAgainEditText);
+
+        preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
+        String userName = preferences.getString("userName", "");
+        String password = preferences.getString("password", "");
+
+        userNameEditText.setText(userName);
+        userPasswordEditText.setText(password);
+        userPasswordAgainEditText.setText(password);
 
         Log.i(LOG_TAG, "onCreate");
     }
