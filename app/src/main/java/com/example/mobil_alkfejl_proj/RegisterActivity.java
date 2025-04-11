@@ -97,4 +97,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onPause();
         Log.i(LOG_TAG, "onPause");
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(LOG_TAG, "onRestart");
+    }
 }

@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+
+    android:layout_marginTop="12dp"
+    >
 
 <!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
@@ -22,20 +25,31 @@
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:layout_marginTop="10dp"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="16dp"
+
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        />
 
     <EditText
         android:id="@+id/editTextUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="text" />
+        android:inputType="text"
+
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        />
 
 
     <Button
@@ -45,6 +59,25 @@
         android:onClick="login"
         android:text="@string/login"
         android:layout_marginTop="20dp"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintVertical_bias="0.269"
+
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        />
+
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="register"
+        android:text="@string/registration"
+        android:layout_marginTop="20dp"
+        app:layout_constraintVertical_bias="0.269"
+
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        />
+
 
 </LinearLayout>
