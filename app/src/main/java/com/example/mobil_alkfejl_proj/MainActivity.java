@@ -1,5 +1,6 @@
 package com.example.mobil_alkfejl_proj;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = MainActivity.class.getName();
+    private static final int SECRET_KEY = 987;
 
     EditText userNameET;
     EditText passwordET;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         });
         userNameET = findViewById(R.id.editTextUserName);
         passwordET = findViewById(R.id.editTextPassword);
+
+        Log.i(LOG_TAG, "onCreate");
     }
 
     public void login(View view) {
@@ -44,7 +48,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
+        Intent intent = new Intent(this, RegisterActivity.class);
         //TODO
+        intent.putExtra("SECRET_KEY", SECRET_KEY);
+        startActivity(intent);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(LOG_TAG, "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(LOG_TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(LOG_TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(LOG_TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(LOG_TAG, "onPause");
     }
 }
