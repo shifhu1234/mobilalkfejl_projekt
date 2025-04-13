@@ -8,10 +8,16 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegisterActivity.class.getName();
@@ -23,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText userPasswordEditText;
     EditText userPasswordAgainEditText;
     private SharedPreferences preferences;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         userPasswordEditText.setText(password);
         userPasswordAgainEditText.setText(password);
 
+        mAuth = FirebaseAuth.getInstance();
         Log.i(LOG_TAG, "onCreate");
     }
 
@@ -75,7 +83,18 @@ public class RegisterActivity extends AppCompatActivity {
         Log.i(LOG_TAG, "Regisztrált: " + userName + ", email: " + userEmail);
         //TODO: regisztráció
 
-        startShopping();
+//        startShopping();
+        mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Log.d(LOG_TAG, "Felhasznalo letrehozva");
+                    startShopping();
+                }else{
+                    Log.d(LOG_TAG, "Sikertelen felhasznalo letrehozas");
+                }
+            }
+        });
     }
 
     public void cancel(View view) {
@@ -86,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void startShopping(){
         Intent intent = new Intent(this, CategoryActivity.class);
-        intent.putExtra("SECTER_KEY", SECRET_KEY);
+//        intent.putExtra("SECTER_KEY", SECRET_KEY);
         startActivity(intent);
     }
 

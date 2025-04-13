@@ -8,10 +8,16 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordET;
 
     private SharedPreferences preferences;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
 
+        mAuth = FirebaseAuth.getInstance();
         Log.i(LOG_TAG, "onCreate");
     }
 
@@ -49,8 +57,38 @@ public class MainActivity extends AppCompatActivity {
         String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
 
-        Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", jelszó: " + password);
+//        Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", jelszó: " + password);
 
+        mAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Log.d(LOG_TAG, "Felhasznalo bejelentkeztetve");
+                    startLogin();
+                }else{
+                    Log.d(LOG_TAG, "Sikertelen felhasznalo bejelentkezes");
+                }
+            }
+        });
+    }
+
+    public void loginAsGuest(View view) {
+        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Log.d(LOG_TAG, "Felhasznalo bejelentkeztetve");
+                    startLogin();
+                }else{
+                    Log.d(LOG_TAG, "Sikertelen felhasznalo bejelentkezes");
+                }
+            }
+        });
+    }
+
+    private void startLogin(){
+        Intent intent = new Intent(this, CategoryActivity.class);
+        startActivity(intent);
     }
 
     public void register(View view) {
