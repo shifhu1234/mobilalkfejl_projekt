@@ -1,5 +1,6 @@
 package com.example.mobil_alkfejl_proj;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class RegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegisterActivity.class.getName();
     private static final String PREF_KEY = MainActivity.class.getPackage().toString();
-
+    private static final int SECRET_KEY = 986;
 
     EditText userNameEditText;
     EditText userEmailEditText;
@@ -69,14 +70,24 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+
+
         Log.i(LOG_TAG, "Regisztrált: " + userName + ", email: " + userEmail);
         //TODO: regisztráció
+
+        startShopping();
     }
 
     public void cancel(View view) {
 //        Intent intent = new Intent(this, MainActivity.class);
 //        startActivity(intent);
         finish();
+    }
+
+    private void startShopping(){
+        Intent intent = new Intent(this, CategoryActivity.class);
+        intent.putExtra("SECTER_KEY", SECRET_KEY);
+        startActivity(intent);
     }
 
 
