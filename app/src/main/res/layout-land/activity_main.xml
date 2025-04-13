@@ -1,83 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="24dp"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-
-    android:layout_marginTop="12dp"
-    >
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Hello World!"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="16dp"
-
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        />
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/editTextUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="128dp"
         android:autofillHints=""
+
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="text"
+        android:inputType="text" />
 
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        />
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/editTextUserName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="128dp"
+        android:layout_marginEnd="128dp"
+
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="256dp"
+        android:layout_marginEnd="256dp"
+        android:layout_marginTop="16dp"
         android:onClick="login"
         android:text="@string/login"
-        android:layout_marginTop="20dp"
-        app:layout_constraintVertical_bias="0.269"
-
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
         />
-
 
     <Button
+        android:layout_marginTop="8dp"
         android:id="@+id/registerButton"
-        android:layout_width="match_parent"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:focusable="true"
         android:onClick="register"
-        android:text="@string/registration"
-        android:layout_marginTop="20dp"
-        app:layout_constraintVertical_bias="0.269"
-
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
+        android:text="@string/or_register"
         />
 
+    <!--    <TextView-->
+    <!--        android:id="@+id/registrationTextViewButton"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="40dp"-->
+    <!--        android:layout_marginEnd="40dp"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:onClick="register"-->
+    <!--        android:padding="8dp"-->
+    <!--        android:text="@string/or_register"-->
+    <!--        android:textColor="?android:attr/textColorLink"-->
+    <!--        android:textSize="16sp"-->
+    <!--         android:layout_centerHorizontal="true"-->
+    <!--        android:layout_below="@id/loginButton"-->
+    <!--        />-->
 
-</LinearLayout>
+
+</RelativeLayout>

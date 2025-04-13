@@ -25,9 +25,9 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:ems="10"
 
         android:hint="@string/user_name"
@@ -43,9 +43,9 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:ems="10"
 
         android:hint="@string/email_address"
@@ -62,9 +62,9 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:ems="10"
 
         android:hint="@string/password"
@@ -80,9 +80,9 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:ems="10"
 
         android:hint="@string/password_again"
@@ -99,15 +99,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/userPasswordAgainEditText"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="24dp"
         android:layout_centerHorizontal="true">
 
         <Button
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registration"
-            android:onClick="register" />
+            android:onClick="register"
+            />
 
         <Button
             style="?android:attr/buttonBarButtonStyle"
