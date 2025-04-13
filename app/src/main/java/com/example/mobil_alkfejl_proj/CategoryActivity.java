@@ -1,10 +1,13 @@
 package com.example.mobil_alkfejl_proj;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,6 +19,9 @@ public class CategoryActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = CategoryActivity.class.getName();
     private FirebaseUser user;
+
+    ConstraintLayout fruitCatergory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +34,34 @@ public class CategoryActivity extends AppCompatActivity {
         });
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null){
+        if (user != null) {
             Log.d(LOG_TAG, "Azonositott felhasznalo");
-        }else{
+        } else {
             Log.d(LOG_TAG, "Nem sikerult bejelentkeztetni a felhasznalot");
             finish();
         }
+
+        fruitCatergory = findViewById(R.id.fruitCategory);
+    }
+
+    public void navigateToFruitProducts(View view) {
+//        Log.i(LOG_TAG, fruitCatergory.getSceneString());
+        Intent intent = new Intent(this, FruitProductActivity.class);
+        startActivity(intent);
+    }
+
+    public void navigateToVegetableProducts(View view) {
+        Intent intent = new Intent(this, VegetableProductActivity.class);
+        startActivity(intent);
+    }
+
+    public void navigateToHoneyProducts(View view) {
+        Intent intent = new Intent(this, HoneyProductActivity.class);
+        startActivity(intent);
+    }
+
+    public void navigateToPastaProducts(View view) {
+        Intent intent = new Intent(this, PastaProductActivity.class);
+        startActivity(intent);
     }
 }

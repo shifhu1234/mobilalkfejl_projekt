@@ -9,7 +9,6 @@
     android:orientation="vertical"
     >
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/categoriesWrapper"
         android:layout_width="wrap_content"
@@ -17,14 +16,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fruitCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToFruitProducts"
+            >
 
 
             <ImageView
@@ -32,21 +37,23 @@
                 android:layout_width="128dp"
                 android:layout_height="128dp"
                 android:layout_marginStart="@dimen/default_marginLeft"
-                android:layout_marginTop="@dimen/default_marginStart"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
                 android:src="@drawable/fruitcatergoryimage"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_marginLeft"
 
-                android:layout_marginTop="@dimen/default_marginStart"
                 android:text="@string/fruitsCategory"
 
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/fruitCategoryImage"
-                app:layout_constraintTop_toTopOf="@id/fruitCategoryImage" />
+                app:layout_constraintTop_toTopOf="@+id/fruitCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,26 +61,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fruitCategory">
+            app:layout_constraintTop_toBottomOf="@+id/fruitCategory"
+
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToVegetableProducts"
+            >
+
 
             <ImageView
                 android:id="@+id/vegetableCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginStart="@dimen/default_marginLeft"
-                android:layout_marginTop="@dimen/default_marginStart"
                 android:src="@drawable/vegetablecategoryimage"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_marginLeft"
-                android:layout_marginTop="@dimen/default_marginStart"
                 android:text="@string/vegetablesCategory"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/vegetableCategoryImage"
-                app:layout_constraintTop_toTopOf="@id/vegetableCategoryImage" />
+                app:layout_constraintTop_toTopOf="@+id/vegetableCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,26 +96,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vegetableCategory">
+            app:layout_constraintTop_toBottomOf="@+id/vegetableCategory"
+
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToPastaProducts"
+            >
 
             <ImageView
                 android:id="@+id/pastaCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginStart="@dimen/default_marginLeft"
-                android:layout_marginTop="@dimen/default_marginStart"
                 android:src="@drawable/pastacategoryimage"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_marginLeft"
-                android:layout_marginTop="@dimen/default_marginStart"
                 android:text="@string/pastasCategory"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/pastaCategoryImage"
-                app:layout_constraintTop_toTopOf="@id/pastaCategoryImage" />
+                app:layout_constraintTop_toTopOf="@+id/pastaCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,26 +130,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pastaCategory">
+            app:layout_constraintTop_toBottomOf="@+id/pastaCategory"
+
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="navigateToHoneyProducts"
+            >
 
             <ImageView
                 android:id="@+id/honeyCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginStart="@dimen/default_marginLeft"
-                android:layout_marginTop="@dimen/default_marginStart"
                 android:src="@drawable/honeycategoryimage"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_marginLeft"
-                android:layout_marginTop="@dimen/default_marginStart"
                 android:text="@string/honeysCategory"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/honeyCategoryImage"
-                app:layout_constraintTop_toTopOf="@id/honeyCategoryImage" />
+                app:layout_constraintTop_toTopOf="@+id/honeyCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
