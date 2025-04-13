@@ -46,4 +46,9 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
+
+    implementation(libs.recyclerview);
+    implementation(libs.recyclerview.selection)
+    implementation(libs.glide)
+    implementation(libs.cardview)
 }

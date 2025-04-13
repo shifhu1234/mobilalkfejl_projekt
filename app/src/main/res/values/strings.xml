@@ -10,5 +10,8 @@
     <string name="cancel">Mégse</string>
     <string name="or_register">vagy Regisztrálj</string>
     <string name="fruitsCategory">Gyümölcsök</string>
+    <string name="vegetablesCategory">Zöldségek</string>
+    <string name="honeysCategory">Mézek</string>
+    <string name="pastasCategory">Száraz áru</string>
     <string name="check_as_guest">csak körbenézek vendégként</string>
 </resources>
