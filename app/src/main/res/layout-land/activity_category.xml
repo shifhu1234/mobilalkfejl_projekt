@@ -22,9 +22,12 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="navigateToFruitProducts"
+            >
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/fruitCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -39,6 +42,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:textSize="24sp"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+
                 android:text="@string/fruitsCategory"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,9 +63,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/fruitCategory"
             app:layout_constraintTop_toTopOf="parent"
+            android:onClick="navigateToVegetableProducts"
             >
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/vegetableCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -73,6 +83,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:textSize="24sp"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+
                 android:text="@string/vegetablesCategory"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,9 +104,13 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/vegetableCategory"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="navigateToPastaProducts"
 
-            <ImageView
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/pastaCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -105,6 +124,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:textSize="24sp"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+
                 android:text="@string/pastasCategory"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,9 +144,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pastaCategory"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="navigateToHoneyProducts"
 
-            <ImageView
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/honeyCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -136,6 +164,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:textSize="24sp"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+
                 android:text="@string/honeysCategory"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

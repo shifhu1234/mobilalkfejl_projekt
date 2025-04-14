@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        if (android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
             Toast.makeText(this, "Nem létező email cím!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -119,10 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                         String errorMessage = task.getException().getMessage();
                         if (errorMessage != null && errorMessage.contains("email address is already in use")) {
                             Toast.makeText(RegisterActivity.this, "Ez az e-mail cím már használatban van!", Toast.LENGTH_SHORT).show();
-                        } else if (errorMessage != null && errorMessage.contains("badly formatted")) {
-                            Toast.makeText(RegisterActivity.this, "Hiba! " + errorMessage, Toast.LENGTH_SHORT).show();
-//                            Toast.makeText(RegisterActivity.this, "Nem létező email cím!", Toast.LENGTH_SHORT).show();
-                        } else {
+                        }else {
                             Toast.makeText(RegisterActivity.this, "Hiba! " + errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     }
