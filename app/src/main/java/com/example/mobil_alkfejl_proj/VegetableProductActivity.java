@@ -1,5 +1,8 @@
 package com.example.mobil_alkfejl_proj;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,11 +40,12 @@ public class VegetableProductActivity extends AppCompatActivity {
     private int gridNumber = 1;
     private boolean viewRow = true;
     private int cartItems = 0;
+    private TextView vegetableProductText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+//        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_vegetable_product);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -65,6 +69,15 @@ public class VegetableProductActivity extends AppCompatActivity {
         mItemList = new ArrayList<>();
         mAdapter = new ShoppingItemAdapter(this, mItemList);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        vegetableProductText = findViewById(R.id.vegetableProductTextView);
+
+        if(user.isAnonymous()){
+            vegetableProductText.setVisibility(VISIBLE);
+        }else{
+            vegetableProductText.setVisibility(GONE);
+        }
 
 //        Log.d(LOG_TAG, "initailizeDataaa");
         initailizeData();

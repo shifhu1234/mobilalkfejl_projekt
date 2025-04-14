@@ -1,5 +1,8 @@
 package com.example.mobil_alkfejl_proj;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,10 +41,12 @@ public class PastaProductActivity extends AppCompatActivity {
     private boolean viewRow = true;
     private int cartItems = 0;
 
+    private TextView pastaProductText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+//        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pasta_product);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -65,6 +70,16 @@ public class PastaProductActivity extends AppCompatActivity {
         mItemList = new ArrayList<>();
         mAdapter = new ShoppingItemAdapter(this, mItemList);
         mRecyclerView.setAdapter(mAdapter);
+
+
+        pastaProductText = findViewById(R.id.pastaProductTextView);
+
+        if(user.isAnonymous()){
+            pastaProductText.setVisibility(VISIBLE);
+        }else{
+            pastaProductText.setVisibility(GONE);
+        }
+
 
 //        Log.d(LOG_TAG, "initailizeDataaa");
         initailizeData();

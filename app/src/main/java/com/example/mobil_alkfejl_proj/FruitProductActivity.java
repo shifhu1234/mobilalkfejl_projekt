@@ -43,6 +43,7 @@ public class FruitProductActivity extends AppCompatActivity {
     private int gridNumber = 1;
     private boolean viewRow = true;
     private int cartItems = 0;
+    private TextView fruitProductText;
 
 
 
@@ -57,8 +58,8 @@ public class FruitProductActivity extends AppCompatActivity {
             return insets;
         });
         mAuth = FirebaseAuth.getInstance();
-//        setContentView(R.layout.activity_fruit_product);
         user = FirebaseAuth.getInstance().getCurrentUser();
+
         if (user != null) {
             Log.d(LOG_TAG, "Azonositott felhasznalo FRUITPRODUCT");
         } else {
@@ -72,6 +73,16 @@ public class FruitProductActivity extends AppCompatActivity {
         mItemList = new ArrayList<>();
         mAdapter = new ShoppingItemAdapter(this, mItemList);
         mRecyclerView.setAdapter(mAdapter);
+
+        fruitProductText = findViewById(R.id.fruitProductTextView);
+//        String fruitText = fruitProductText.getText().toString();
+
+        if(user.isAnonymous()){
+            fruitProductText.setVisibility(VISIBLE);
+        }else{
+            fruitProductText.setVisibility(GONE);
+        }
+
 
 //        Log.d(LOG_TAG, "initailizeDataaa");
         initailizeData();

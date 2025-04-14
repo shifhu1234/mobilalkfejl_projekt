@@ -1,5 +1,8 @@
 package com.example.mobil_alkfejl_proj;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,11 +40,12 @@ public class HoneyProductActivity extends AppCompatActivity {
     private int gridNumber = 1;
     private boolean viewRow = true;
     private int cartItems = 0;
+    private TextView honeyProductText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+//        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_honey_product);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -66,6 +70,14 @@ public class HoneyProductActivity extends AppCompatActivity {
         mAdapter = new ShoppingItemAdapter(this, mItemList);
         mRecyclerView.setAdapter(mAdapter);
 
+
+        honeyProductText = findViewById(R.id.honeyProductTextView);
+
+        if (user.isAnonymous()) {
+            honeyProductText.setVisibility(VISIBLE);
+        } else {
+            honeyProductText.setVisibility(GONE);
+        }
 //        Log.d(LOG_TAG, "initailizeDataaa");
         initailizeData();
     }
@@ -92,6 +104,7 @@ public class HoneyProductActivity extends AppCompatActivity {
         itemsImageResource.recycle();
         mAdapter.notifyDataSetChanged();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
