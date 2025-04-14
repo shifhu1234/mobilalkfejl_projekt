@@ -132,6 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, MainActivity.class);
 //        startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
     }
 
     private void startShopping() {

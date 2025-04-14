@@ -48,20 +48,24 @@ public class CategoryActivity extends AppCompatActivity {
 //        Log.i(LOG_TAG, fruitCatergory.getSceneString());
         Intent intent = new Intent(this, FruitProductActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);
     }
 
     public void navigateToVegetableProducts(View view) {
         Intent intent = new Intent(this, VegetableProductActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);
     }
 
     public void navigateToHoneyProducts(View view) {
         Intent intent = new Intent(this, HoneyProductActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);
     }
 
     public void navigateToPastaProducts(View view) {
         Intent intent = new Intent(this, PastaProductActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);
     }
 }

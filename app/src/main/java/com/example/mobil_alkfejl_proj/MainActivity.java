@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
 //        Toast.makeText(this, "Üdvözlünk!", Toast.LENGTH_SHORT).show();
+        overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);
+
         return;
     }
 
@@ -113,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);
     }
 
     @Override

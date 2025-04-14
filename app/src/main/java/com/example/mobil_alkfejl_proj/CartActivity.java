@@ -16,7 +16,7 @@ public class CartActivity extends AppCompatActivity {
 
 //    private ArrayList<ShoppingItem> itemList;
 
-    private CartActivity() {
+    public CartActivity() {
         itemCount = 0;
     }
 

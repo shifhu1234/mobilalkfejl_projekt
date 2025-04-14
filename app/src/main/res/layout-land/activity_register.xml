@@ -11,12 +11,12 @@
         android:id="@+id/registrationTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
 
         android:text="@string/registration"
         android:textAlignment="center"
-        />
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/userNameEditText"
@@ -50,44 +50,47 @@
         android:layout_below="@id/userNameEditText"
         />
 
-    <EditText
-        android:id="@+id/userPasswordEditText"
-
+    <LinearLayout
+        android:id="@+id/passwordLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginRight="64dp"
-        android:ems="10"
-
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:autofillHints=""
+        android:orientation="horizontal"
         android:layout_below="@id/userEmailEditText"
-        />
-
-    <EditText
-        android:id="@+id/userPasswordAgainEditText"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:layout_marginLeft="64dp"
         android:layout_marginRight="64dp"
-        android:ems="10"
+        >
 
-        android:hint="@string/password_again"
-        android:inputType="textPassword"
-        android:autofillHints=""
-        android:layout_below="@id/userPasswordEditText"
-        />
+        <EditText
+            android:id="@+id/userPasswordEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:layout_marginEnd="8dp"
+            />
+
+        <EditText
+            android:id="@+id/userPasswordAgainEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/password_again"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:layout_marginStart="8dp"
+            />
+    </LinearLayout>
+
 
     <LinearLayout
         style="?android:attr/buttonBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_below="@id/userPasswordAgainEditText"
+        android:layout_below="@id/passwordLayout"
         >
 
         <Button

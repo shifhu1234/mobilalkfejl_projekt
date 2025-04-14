@@ -150,6 +150,7 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             Intent intent = new Intent(this, MainActivity.class);
             finish();
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
         }
 //        else if (id == R.id.setting_button) {return true;}
@@ -163,15 +164,16 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
-                changeSpanCount(item, R.drawable.ic_view_gird, 1);
+                changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {
-                changeSpanCount(item, R.drawable.ic_view_row, 2);
+                changeSpanCount(item, R.drawable.ic_view_row, 1);
             }
             return true;
         } else {
             if (id == R.id.log_in_button){
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             }
             return super.onOptionsItemSelected(item);
         }

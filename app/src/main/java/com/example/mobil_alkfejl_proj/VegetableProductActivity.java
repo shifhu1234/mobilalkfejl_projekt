@@ -75,9 +75,9 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
 
         vegetableProductText = findViewById(R.id.vegetableProductTextView);
 
-        if(user.isAnonymous()){
+        if (user.isAnonymous()) {
             vegetableProductText.setVisibility(VISIBLE);
-        }else{
+        } else {
             vegetableProductText.setVisibility(GONE);
         }
 
@@ -115,7 +115,7 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Zöldségek");
         }
 
@@ -150,6 +150,7 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             Intent intent = new Intent(this, MainActivity.class);
             finish();
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
         }
 //        else if (id == R.id.setting_button) {
@@ -164,15 +165,16 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
-                changeSpanCount(item, R.drawable.ic_view_row, 2);
+                changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {
-                changeSpanCount(item, R.drawable.ic_view_gird, 1);
+                changeSpanCount(item, R.drawable.ic_view_row, 1);
             }
             return true;
         } else {
-            if (id == R.id.log_in_button){
+            if (id == R.id.log_in_button) {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             }
             return super.onOptionsItemSelected(item);
         }
@@ -216,6 +218,7 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
         }
 //        validateOptionsMenu();
     }
+
     @Override
     protected void onResume() {
         super.onResume();

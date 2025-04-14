@@ -33,7 +33,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FruitProductActivity extends AppCompatActivity implements CartUpdateListener{
+public class FruitProductActivity extends AppCompatActivity implements CartUpdateListener {
 
     private static final String LOG_TAG = FruitProductActivity.class.getName();
     private FirebaseUser user;
@@ -47,7 +47,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     private boolean viewRow = true;
     private int cartItems = 0;
     private TextView fruitProductText;
-
 
 
     @Override
@@ -80,9 +79,9 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         fruitProductText = findViewById(R.id.fruitProductTextView);
 //        String fruitText = fruitProductText.getText().toString();
 
-        if(user.isAnonymous()){
+        if (user.isAnonymous()) {
             fruitProductText.setVisibility(VISIBLE);
-        }else{
+        } else {
             fruitProductText.setVisibility(GONE);
         }
 
@@ -115,7 +114,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -123,7 +121,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Gyümölcsök");
         }
 
@@ -158,13 +156,15 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         if (id == R.id.log_out_button) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, MainActivity.class);
+
             finish();
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
         }
 //        else if (id == R.id.setting_button) {
 //            return true;}
-            else if (id == R.id.cart) {
+        else if (id == R.id.cart) {
             Log.d(LOG_TAG, "CART MEGYNOMVA");
 //            Intent intent = new Intent(this, CartActivity.class);
 //            startActivity(intent);
@@ -179,21 +179,23 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             }
             return true;
         } else {
-            if (id == R.id.log_in_button){
+            if (id == R.id.log_in_button) {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             }
 
             return super.onOptionsItemSelected(item);
         }
     }
+
     private SharedPreferences preferences;
 
     private void changeSpanCount(MenuItem item, int drawableId, int spanCount) {
         viewRow = !viewRow;
         item.setIcon(drawableId);
         GridLayoutManager layoutManager = (GridLayoutManager) mRecyclerView.getLayoutManager();
-        if (layoutManager != null){
+        if (layoutManager != null) {
             layoutManager.setSpanCount(spanCount);
         }
     }
@@ -232,6 +234,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         }
 //        invalidateOptionsMenu();
     }
+
     @Override
     protected void onResume() {
         super.onResume();

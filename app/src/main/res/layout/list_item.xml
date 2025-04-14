@@ -62,7 +62,8 @@
             android:layout_below="@id/subTitle"
             android:layout_marginBottom="12dp"
             android:padding="8dp"
-            android:textColor="@color/red"
+            android:text="placeholder"
+            android:textColor="@color/black"
             android:layout_centerHorizontal="true"
             />
         <!--            style="@style/ItemDetailText"-->

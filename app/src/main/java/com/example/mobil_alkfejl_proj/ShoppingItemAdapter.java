@@ -4,6 +4,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.target.Target;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -130,8 +134,6 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             itemView.findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-//                    Log.d("Activity","Add button clicked!");
-
                     if (!user.isAnonymous()) {
                         if (cartUpdateListener != null) {
                             cartUpdateListener.updateAlertIcon();
@@ -150,7 +152,29 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             mPriceText.setText(currentItem.getPrice());
             mRatingBar.setRating(currentItem.getRatedInfo());
 
-            Glide.with(mContext).load(currentItem.getImageResource()).into(mItemImage);
+//            Glide.with(mContext).load(currentItem.getImageResource()).into(mItemImage);
+//            Glide.with(mContext)
+//                    .load(currentItem.getImageResource())
+//                    .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade(750))
+//                    .into(mItemImage);
+
+            Glide.with(mContext)
+                    .load(currentItem.getImageResource())
+                    .listener(new com.bumptech.glide.request.RequestListener<android.graphics.drawable.Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, @Nullable Object model, @NonNull Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(android.graphics.drawable.Drawable resource, Object model, Target<android.graphics.drawable.Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource) {
+                            Animation fadeIn = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
+                            mItemImage.startAnimation(fadeIn);
+                            return false;
+                        }
+                    })
+                    .into(mItemImage);
+
         }
     };
 
