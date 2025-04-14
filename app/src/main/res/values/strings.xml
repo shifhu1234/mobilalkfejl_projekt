@@ -12,6 +12,41 @@
     <string name="fruitsCategory">Gyümölcsök</string>
     <string name="vegetablesCategory">Zöldségek</string>
     <string name="honeysCategory">Mézek</string>
-    <string name="pastasCategory">Száraz áru</string>
+    <string name="pastasCategory">Szárazáru</string>
     <string name="check_as_guest">csak körbenézek vendégként</string>
+    <string name="into_basket">Kosárba</string>
+
+
+    <string-array name="fruit_product_names">
+        <item>Alma</item>
+        <item>Körte</item>
+        <item>Banán</item>
+    </string-array>
+
+    <string-array name="fruit_product_description">
+        <item>Almaaa</item>
+        <item>Körteeee</item>
+        <item>Banánnnnn</item>
+    </string-array>
+
+    <array name="fruit_product_price">
+        <item>1000</item>
+        <item>20000</item>
+        <item>400</item>
+    </array>
+
+    <array name="fruit_product_image">
+        <item>@drawable/alma</item>
+        <item>@drawable/korte</item>
+        <item>@drawable/banan</item>
+    </array>
+
+    <array name="fruit_product_rating">
+        <item>5</item>
+        <item>3.5</item>
+        <item>4</item>
+    </array>
+
+
+
 </resources>

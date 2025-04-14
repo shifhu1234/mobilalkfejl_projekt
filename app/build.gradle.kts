@@ -49,6 +49,8 @@ dependencies {
 
     implementation(libs.recyclerview);
     implementation(libs.recyclerview.selection)
-    implementation(libs.glide)
     implementation(libs.cardview)
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
 }
