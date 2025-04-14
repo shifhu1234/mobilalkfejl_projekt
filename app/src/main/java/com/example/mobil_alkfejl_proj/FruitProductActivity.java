@@ -6,13 +6,10 @@ import static android.view.View.VISIBLE;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.graphics.drawable.DrawableWrapper;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
 import androidx.core.view.ViewCompat;
@@ -43,10 +40,11 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     private ShoppingItemAdapter mAdapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
-    private int gridNumber = 1;
+    private final int gridNumber = 1;
     private boolean viewRow = true;
-    private int cartItems = 0;
+    private final int cartItems = 0;
     private TextView fruitProductText;
+    private SharedPreferences preferences;
 
 
     @Override
@@ -77,7 +75,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         mRecyclerView.setAdapter(mAdapter);
 
         fruitProductText = findViewById(R.id.fruitProductTextView);
-//        String fruitText = fruitProductText.getText().toString();
 
         if (user.isAnonymous()) {
             fruitProductText.setVisibility(VISIBLE);
@@ -168,7 +165,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             Log.d(LOG_TAG, "CART MEGYNOMVA");
 //            Intent intent = new Intent(this, CartActivity.class);
 //            startActivity(intent);
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.view_selector) {
@@ -189,7 +185,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         }
     }
 
-    private SharedPreferences preferences;
 
     private void changeSpanCount(MenuItem item, int drawableId, int spanCount) {
         viewRow = !viewRow;
@@ -205,8 +200,8 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem alertMenuItem = menu.findItem(R.id.cart);
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
-        redCircle = (FrameLayout) rootView.findViewById(R.id.view_alert_red_circle);
-        contentTextView = (TextView) rootView.findViewById(R.id.view_alert_count_textview);
+        redCircle = rootView.findViewById(R.id.view_alert_red_circle);
+        contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
 //        contentTextView.setText(String.valueOf(cartItems));
 //        Log.e(LOG_TAG, (String) contentTextView.getText());
 //        Log.e(LOG_TAG, "asd");

@@ -103,9 +103,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-
-//        Log.i(LOG_TAG, "Regisztrált: " + userName + ", email: " + userEmail);
-
 //        startShopping();
         mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -119,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
                         String errorMessage = task.getException().getMessage();
                         if (errorMessage != null && errorMessage.contains("email address is already in use")) {
                             Toast.makeText(RegisterActivity.this, "Ez az e-mail cím már használatban van!", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             Toast.makeText(RegisterActivity.this, "Hiba! " + errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     }

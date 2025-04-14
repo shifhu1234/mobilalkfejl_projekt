@@ -8,11 +8,11 @@
     android:orientation="vertical"
     tools:context=".CategoryActivity">
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--    android:id="@+id/recyclerView"-->
-<!--    android:scrollbars="vertical"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent" />-->
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--    android:id="@+id/recyclerView"-->
+    <!--    android:scrollbars="vertical"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/categoriesWrapper"
@@ -43,22 +43,22 @@
                 android:layout_marginStart="@dimen/default_marginLeft"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:src="@drawable/fruitcatergoryimage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/fruitsCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/fruitCategoryImage"
                 app:layout_constraintTop_toTopOf="@+id/fruitCategoryImage" />
@@ -87,19 +87,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
-                />
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/vegetablesCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/vegetableCategoryImage"
                 app:layout_constraintTop_toTopOf="@+id/vegetableCategoryImage" />
@@ -127,19 +126,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
-                />
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/honeysCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/honeyCategoryImage"
                 app:layout_constraintTop_toTopOf="@+id/honeyCategoryImage" />
@@ -166,19 +164,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
-                />
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/pastasCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/pastaCategoryImage"
                 app:layout_constraintTop_toTopOf="@+id/pastaCategoryImage" />

@@ -8,13 +8,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
-
 public class CartActivity extends AppCompatActivity {
     private static CartActivity instance;
     private int itemCount;
-
-//    private ArrayList<ShoppingItem> itemList;
 
     public CartActivity() {
         itemCount = 0;
@@ -38,6 +34,7 @@ public class CartActivity extends AppCompatActivity {
     public void clearCart() {
         itemCount = 0;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

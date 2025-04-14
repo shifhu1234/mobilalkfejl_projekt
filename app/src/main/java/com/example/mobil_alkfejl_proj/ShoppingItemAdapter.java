@@ -1,11 +1,8 @@
 package com.example.mobil_alkfejl_proj;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +13,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import androidx.activity.EdgeToEdge;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -32,12 +29,13 @@ import java.util.ArrayList;
 
 public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapter.ViewHolder> implements Filterable {
     private ArrayList<ShoppingItem> mShoppingItemsData;
-    private ArrayList<ShoppingItem> mShoppingItemsDataAll;
-    private Context mContext;
+    private final ArrayList<ShoppingItem> mShoppingItemsDataAll;
+    private final Context mContext;
     private int lastPosition = -1;
-    private FirebaseUser user;
-    private FirebaseAuth mAuth;
+    private final FirebaseUser user;
+    private final FirebaseAuth mAuth;
     private CartUpdateListener cartUpdateListener;
+
     ShoppingItemAdapter(Context context, ArrayList<ShoppingItem> itemsData) {
         this.mShoppingItemsData = itemsData;
         this.mShoppingItemsDataAll = itemsData;
@@ -69,7 +67,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
         holder.bindTo(currentItem);
 
-        if (holder.getAdapterPosition() > lastPosition){
+        if (holder.getAdapterPosition() > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slide_in_row);
             holder.itemView.startAnimation(animation);
             lastPosition = holder.getAdapterPosition();
@@ -85,19 +83,20 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     public Filter getFilter() {
         return shoppingFilter;
     }
-    private Filter shoppingFilter = new Filter() {
+
+    private final Filter shoppingFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             ArrayList<ShoppingItem> filteredList = new ArrayList<>();
             FilterResults results = new FilterResults();
-            if (constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 results.count = mShoppingItemsDataAll.size();
                 results.values = mShoppingItemsDataAll;
-            }else{
+            } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (ShoppingItem item : mShoppingItemsDataAll){
-                    if (item.getName().toLowerCase().contains(filterPattern)){
+                for (ShoppingItem item : mShoppingItemsDataAll) {
+                    if (item.getName().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }
@@ -116,11 +115,11 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     };
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView mTitleText;
-        private TextView mInfoText;
-        private TextView mPriceText;
-        private ImageView mItemImage;
-        private RatingBar mRatingBar;
+        private final TextView mTitleText;
+        private final TextView mInfoText;
+        private final TextView mPriceText;
+        private final ImageView mItemImage;
+        private final RatingBar mRatingBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -176,7 +175,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                     .into(mItemImage);
 
         }
-    };
+    }
 
 }
 

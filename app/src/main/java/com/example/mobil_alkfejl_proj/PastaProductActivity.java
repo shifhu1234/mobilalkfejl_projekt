@@ -15,7 +15,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
@@ -39,9 +38,9 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
     private ShoppingItemAdapter mAdapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
-    private int gridNumber = 1;
+    private final int gridNumber = 1;
     private boolean viewRow = true;
-    private int cartItems = 0;
+    private final int cartItems = 0;
 
     private TextView pastaProductText;
 
@@ -57,7 +56,6 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         });
 
         mAuth = FirebaseAuth.getInstance();
-//        setContentView(R.layout.activity_fruit_product);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Log.d(LOG_TAG, "Azonositott felhasznalo FRUITPRODUCT");
@@ -76,9 +74,9 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
 
         pastaProductText = findViewById(R.id.pastaProductTextView);
 
-        if(user.isAnonymous()){
+        if (user.isAnonymous()) {
             pastaProductText.setVisibility(VISIBLE);
-        }else{
+        } else {
             pastaProductText.setVisibility(GONE);
         }
 
@@ -109,6 +107,7 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         itemsImageResource.recycle();
         mAdapter.notifyDataSetChanged();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -116,7 +115,7 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Szárazáru");
         }
 
@@ -160,7 +159,6 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
             Log.d(LOG_TAG, "CART MEGYNOMVA");
 //            Intent intent = new Intent(this, CartActivity.class);
 //            startActivity(intent);
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
             return true;
@@ -172,7 +170,7 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
             }
             return true;
         } else {
-            if (id == R.id.log_in_button){
+            if (id == R.id.log_in_button) {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
@@ -193,8 +191,8 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem alertMenuItem = menu.findItem(R.id.cart);
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
-        redCircle = (FrameLayout) rootView.findViewById(R.id.view_alert_red_circle);
-        contentTextView = (TextView) rootView.findViewById(R.id.view_alert_count_textview);
+        redCircle = rootView.findViewById(R.id.view_alert_red_circle);
+        contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
 
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override

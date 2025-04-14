@@ -15,7 +15,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
@@ -39,9 +38,9 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
     private ShoppingItemAdapter mAdapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
-    private int gridNumber = 1;
+    private final int gridNumber = 1;
     private boolean viewRow = true;
-    private int cartItems = 0;
+    private final int cartItems = 0;
     private TextView honeyProductText;
 
     @Override
@@ -71,7 +70,6 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         mItemList = new ArrayList<>();
         mAdapter = new ShoppingItemAdapter(this, mItemList);
         mRecyclerView.setAdapter(mAdapter);
-
 
         honeyProductText = findViewById(R.id.honeyProductTextView);
 
@@ -114,7 +112,7 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
 
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Mézek");
         }
 
@@ -158,7 +156,6 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             Log.d(LOG_TAG, "CART MEGYNOMVA");
 //            Intent intent = new Intent(this, CartActivity.class);
 //            startActivity(intent);
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
             return true;
@@ -170,7 +167,7 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             }
             return true;
         } else {
-            if (id == R.id.log_in_button){
+            if (id == R.id.log_in_button) {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
@@ -191,8 +188,8 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem alertMenuItem = menu.findItem(R.id.cart);
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
-        redCircle = (FrameLayout) rootView.findViewById(R.id.view_alert_red_circle);
-        contentTextView = (TextView) rootView.findViewById(R.id.view_alert_count_textview);
+        redCircle = rootView.findViewById(R.id.view_alert_red_circle);
+        contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
 
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +199,6 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         });
         return super.onPrepareOptionsMenu(menu);
     }
-
 
     @Override
     public void updateAlertIcon() {

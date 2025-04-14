@@ -15,7 +15,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
@@ -39,9 +38,9 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
     private ShoppingItemAdapter mAdapter;
     private FrameLayout redCircle;
     private TextView contentTextView;
-    private int gridNumber = 1;
+    private final int gridNumber = 1;
     private boolean viewRow = true;
-    private int cartItems = 0;
+    private final int cartItems = 0;
     private TextView vegetableProductText;
 
     @Override
@@ -159,7 +158,6 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             Log.d(LOG_TAG, "CART MEGYNOMVA");
 //            Intent intent = new Intent(this, CartActivity.class);
 //            startActivity(intent);
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
             return true;
@@ -192,8 +190,8 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem alertMenuItem = menu.findItem(R.id.cart);
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
-        redCircle = (FrameLayout) rootView.findViewById(R.id.view_alert_red_circle);
-        contentTextView = (TextView) rootView.findViewById(R.id.view_alert_count_textview);
+        redCircle = rootView.findViewById(R.id.view_alert_red_circle);
+        contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
 
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,46 +2,38 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
+
     <item
         android:id="@+id/search_bar"
         android:icon="@drawable/ic_search"
         android:title="@string/search_menu_option"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always"
-        tools:ignore="AlwaysShowAction"
-        />
+        tools:ignore="AlwaysShowAction" />
     <item
         android:id="@+id/cart"
         android:icon="@drawable/ic_shopping_cart"
         android:title="@string/cart_menu_option"
         app:actionLayout="@layout/custom_menu_item"
-        app:showAsAction="always"
-        />
+        app:showAsAction="always" />
     <item
         android:id="@+id/view_selector"
         android:icon="@drawable/ic_view_row"
         android:title="@string/layout_menu_option"
         app:showAsAction="ifRoom" />
-<!--    <item-->
-<!--        android:id="@+id/setting_button"-->
-<!--        android:icon="@drawable/ic_settings"-->
-<!--        android:title="@string/setting_menu_option"-->
-<!--        app:showAsAction="ifRoom" />-->
+
     <item
         android:id="@+id/log_out_button"
         android:icon="@drawable/ic_logout"
         android:title="@string/logout_menu_option"
-        app:showAsAction="ifRoom"
-        />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/log_in_button"
         android:icon="@drawable/ic_logout"
         android:title="@string/login_menu_option"
-        app:showAsAction="ifRoom"
         android:visible="false"
-        />
+        app:showAsAction="ifRoom" />
 
 </menu>

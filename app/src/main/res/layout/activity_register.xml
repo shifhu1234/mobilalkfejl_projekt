@@ -100,7 +100,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="register"
-            android:text="@string/registration" />
+            android:text="@string/registration"
+            tools:ignore="ButtonStyle" />
 
         <Button
             style="?android:attr/buttonBarButtonStyle"

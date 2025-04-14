@@ -22,6 +22,9 @@
     <string name="setting_menu_option">Beálltások</string>
     <string name="logout_menu_option">Kijelentkezés</string>
     <string name="login_menu_option">Bejelentkezés</string>
+    <string name="cart_icon">kosarka</string>
+    <string name="item_info_placeholder">item_info_placeholder</string>
+    <string name="image_card">kepecske</string>
 
 
     <!--    <string-array name="fruit_product_names">-->

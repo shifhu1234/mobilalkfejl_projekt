@@ -20,14 +20,12 @@
             android:id="@+id/fruitCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="navigateToFruitProducts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="navigateToFruitProducts"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/fruitCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -37,22 +35,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/fruitsCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fruitCategoryImage"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/fruitCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Vegetable -->
@@ -60,14 +57,12 @@
             android:id="@+id/vegetableCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="navigateToVegetableProducts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/fruitCategory"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="navigateToVegetableProducts"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/vegetableCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -77,6 +72,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
 
                 />
 
@@ -84,11 +80,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/vegetablesCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,15 +98,14 @@
             android:id="@+id/pastaCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="navigateToPastaProducts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/vegetableCategory"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="navigateToPastaProducts"
 
             >
 
             <com.google.android.material.imageview.ShapeableImageView
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/pastaCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -119,17 +114,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/pastasCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,16 +137,15 @@
             android:id="@+id/honeyCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="navigateToHoneyProducts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pastaCategory"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="navigateToHoneyProducts"
 
             >
 
             <com.google.android.material.imageview.ShapeableImageView
-                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 android:id="@+id/honeyCategoryImage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
@@ -159,17 +154,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:textSize="24sp"
                 android:fontFamily="casual"
-                android:textStyle="bold"
-
                 android:text="@string/honeysCategory"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
