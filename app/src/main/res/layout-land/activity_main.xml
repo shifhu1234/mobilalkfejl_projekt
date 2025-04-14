@@ -51,6 +51,19 @@
         android:onClick="login"
         android:text="@string/login" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_alignBottom="@id/registerButton"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="-16dp"
+        android:maxWidth="128dp"
+        android:maxHeight="128dp"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        app:srcCompat="@drawable/fruitmain" />
+
     <Button
         android:id="@+id/registerButton"
         style="?android:attr/buttonBarButtonStyle"

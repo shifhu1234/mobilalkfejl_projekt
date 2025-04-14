@@ -7,6 +7,37 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+
+    <!--        android:fontFamily="casual"-->
+    <!--        android:text="@string/app_name"-->
+    <!--        android:textSize="24sp"-->
+
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/shapeableImageView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="-16dp"
+        android:maxWidth="128dp"
+        android:maxHeight="128dp"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextUserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fruitmain">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
     <EditText
         android:id="@+id/editTextUserName"
         android:layout_width="match_parent"
