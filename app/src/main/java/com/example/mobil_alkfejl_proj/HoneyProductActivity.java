@@ -3,6 +3,7 @@ package com.example.mobil_alkfejl_proj;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-public class HoneyProductActivity extends AppCompatActivity {
+public class HoneyProductActivity extends AppCompatActivity implements CartUpdateListener {
 
     private static final String LOG_TAG = HoneyProductActivity.class.getName();
     private FirebaseUser user;
@@ -111,6 +113,11 @@ public class HoneyProductActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.shop_list_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle("Mézek");
+        }
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -124,7 +131,11 @@ public class HoneyProductActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        if (user != null && user.isAnonymous()) {
+            MenuItem logoutButton = menu.findItem(R.id.log_out_button);
+            menu.findItem(R.id.log_in_button).setVisible(true);
+            logoutButton.setVisible(false);
+        }
         return true;
     }
 
@@ -136,15 +147,19 @@ public class HoneyProductActivity extends AppCompatActivity {
 
         if (id == R.id.log_out_button) {
             FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, MainActivity.class);
             finish();
+            startActivity(intent);
             return true;
-        } else if (id == R.id.setting_button) {
-            return true;
-        } else if (id == R.id.cart) {
+        }
+//        else if (id == R.id.setting_button) {return true;}
+        else if (id == R.id.cart) {
             Log.d(LOG_TAG, "CART MEGYNOMVA");
 //            Intent intent = new Intent(this, CartActivity.class);
 //            startActivity(intent);
 //            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
+
             return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
@@ -154,6 +169,10 @@ public class HoneyProductActivity extends AppCompatActivity {
             }
             return true;
         } else {
+            if (id == R.id.log_in_button){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
             return super.onOptionsItemSelected(item);
         }
     }
@@ -183,16 +202,19 @@ public class HoneyProductActivity extends AppCompatActivity {
     }
 
 
+    @Override
     public void updateAlertIcon() {
-        cartItems = cartItems + 1;
-//        if(contentTextView != null){
-        if (0 < cartItems) {
-//            if (contentTextView != null){
-            contentTextView.setText(String.valueOf(cartItems));
-//            }
-        } else {
-            contentTextView.setText("");
+        CartActivity.getInstance().addItem();
+        int cartItems = CartActivity.getInstance().getItemCount();
+
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
         }
 
+        if (redCircle != null) {
+            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
+        }
+//        invalidateOptionsMenu();
     }
+
 }

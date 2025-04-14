@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -45,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
 //        Bundle bundle = getIntent().getExtras();
 //        int secret_key = bundle.getInt("SECRET_KEY");
         int secret_key = getIntent().getIntExtra("SECRET_KEY", 0);
-        if (secret_key != 987){
+        if (secret_key != 987) {
             finish();
         }
 
@@ -72,26 +73,59 @@ public class RegisterActivity extends AppCompatActivity {
         String userEmail = userEmailEditText.getText().toString();
         String userPassword = userPasswordEditText.getText().toString();
         String userPasswordAgian = userPasswordAgainEditText.getText().toString();
+        if (userName.isEmpty()) {
+            Toast.makeText(this, "Minden mezőt szükséges kitölteni!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        if (!userPassword.equals(userPasswordAgian)){
-            Log.e(LOG_TAG, "Nem egyező jelszavak!");
+        if (userEmail.isEmpty()) {
+            Toast.makeText(this, "Minden mezőt szükséges kitölteni!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (userPassword.length() < 6) {
+//            Log.e(LOG_TAG, "Nem egyező jelszavak!");
+            Toast.makeText(this, "Minimum 6 karakter hosszú jelszó szükséges!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!userPassword.equals(userPasswordAgian)) {
+//            Log.e(LOG_TAG, "Nem egyező jelszavak!");
+            Toast.makeText(this, "Nem egyező jelszavak!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
+            Toast.makeText(this, "Nem létező email cím!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (userName.length() < 3) {
+            Toast.makeText(this, "Minimum 3 karakter hosszú felhasználónév szükséges!", Toast.LENGTH_SHORT).show();
             return;
         }
 
 
-
-        Log.i(LOG_TAG, "Regisztrált: " + userName + ", email: " + userEmail);
-        //TODO: regisztráció
+//        Log.i(LOG_TAG, "Regisztrált: " + userName + ", email: " + userEmail);
 
 //        startShopping();
         mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Log.d(LOG_TAG, "Felhasznalo letrehozva");
                     startShopping();
-                }else{
-                    Log.d(LOG_TAG, "Sikertelen felhasznalo letrehozas");
+                } else {
+                    Log.d(LOG_TAG, "Sikertelen felhasználó létrehozás", task.getException());
+                    if (task.getException() != null) {
+                        String errorMessage = task.getException().getMessage();
+                        if (errorMessage != null && errorMessage.contains("email address is already in use")) {
+                            Toast.makeText(RegisterActivity.this, "Ez az e-mail cím már használatban van!", Toast.LENGTH_SHORT).show();
+                        } else if (errorMessage != null && errorMessage.contains("badly formatted")) {
+                            Toast.makeText(RegisterActivity.this, "Hiba! " + errorMessage, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(RegisterActivity.this, "Nem létező email cím!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(RegisterActivity.this, "Hiba! " + errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             }
         });
@@ -103,10 +137,12 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
-    private void startShopping(){
+    private void startShopping() {
         Intent intent = new Intent(this, CategoryActivity.class);
 //        intent.putExtra("SECTER_KEY", SECRET_KEY);
         startActivity(intent);
+        Toast.makeText(this, "Üdvözlünk!", Toast.LENGTH_SHORT).show();
+
     }
 
 

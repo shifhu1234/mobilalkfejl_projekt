@@ -33,7 +33,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     private int lastPosition = -1;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
-
+    private CartUpdateListener cartUpdateListener;
     ShoppingItemAdapter(Context context, ArrayList<ShoppingItem> itemsData) {
         this.mShoppingItemsData = itemsData;
         this.mShoppingItemsDataAll = itemsData;
@@ -48,6 +48,10 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 //            Log.d(LOG_TAG, "Nem sikerult bejelentkeztetni a felhasznalot");
 //            finish();
 //        }
+        if (context instanceof CartUpdateListener) {
+            cartUpdateListener = (CartUpdateListener) context;
+        }
+
     }
 
     @Override
@@ -128,9 +132,11 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                 public void onClick(View view) {
 //                    Log.d("Activity","Add button clicked!");
 
-                    if (!user.isAnonymous()){
-                        ((FruitProductActivity)mContext).updateAlertIcon();
-                    }else{
+                    if (!user.isAnonymous()) {
+                        if (cartUpdateListener != null) {
+                            cartUpdateListener.updateAlertIcon();
+                        }
+                    } else {
                         Intent intent = new Intent(mContext, MainActivity.class);
                         ContextCompat.startActivity(mContext, intent, null);
                     }

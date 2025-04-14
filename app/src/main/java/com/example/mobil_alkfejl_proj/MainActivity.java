@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -58,15 +59,30 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordET.getText().toString();
 
 //        Log.i(LOG_TAG, "Bejelentkezett: " + userName + ", jelszó: " + password);
+        if (userName.isEmpty() || password.isEmpty()) {
+//            Log.d(LOG_TAG, "Üres felhasználónév vagy jelszó");
+            Toast.makeText(this, "Kérlek, töltsd ki mindkét mezőt!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (password.length() < 6) {
+            Toast.makeText(this, "Minimum 6 karakter hosszú jelszó szükséges!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         mAuth.signInWithEmailAndPassword(userName, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Log.d(LOG_TAG, "Felhasznalo bejelentkeztetve");
                     startLogin();
-                }else{
-                    Log.d(LOG_TAG, "Sikertelen felhasznalo bejelentkezes");
+                } else {
+
+                    Log.d(LOG_TAG, "Sikertelen felhasználó létrehozás", task.getException());
+                    if (task.getException() != null) {
+                            Toast.makeText(MainActivity.this, "Sikertelen belépés!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -76,24 +92,25 @@ public class MainActivity extends AppCompatActivity {
         mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Log.d(LOG_TAG, "Felhasznalo bejelentkeztetve");
                     startLogin();
-                }else{
+                } else {
                     Log.d(LOG_TAG, "Sikertelen felhasznalo bejelentkezes");
                 }
             }
         });
     }
 
-    private void startLogin(){
+    private void startLogin() {
         Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
+//        Toast.makeText(this, "Üdvözlünk!", Toast.LENGTH_SHORT).show();
+        return;
     }
 
     public void register(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
-        //TODO
         intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
     }
@@ -128,11 +145,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("userName", userNameET.getText().toString());
         editor.putString("password", passwordET.getText().toString());
-
+//        editor.putString("redirectedPage", )
         editor.apply();
 
         Log.i(LOG_TAG, "onPause");
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();

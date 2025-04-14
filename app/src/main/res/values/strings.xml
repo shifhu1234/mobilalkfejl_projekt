@@ -16,6 +16,12 @@
     <string name="check_as_guest">csak körbenézek vendégként</string>
     <string name="into_basket">Kosárba</string>
     <string name="log_in_to_buy">Jelentkezz be a vásárláshoz!</string>
+    <string name="search_menu_option">Keresés</string>
+    <string name="cart_menu_option">Kosár</string>
+    <string name="layout_menu_option">Kinézet</string>
+    <string name="setting_menu_option">Beálltások</string>
+    <string name="logout_menu_option">Kijelentkezés</string>
+    <string name="login_menu_option">Bejelentkezés</string>
 
 
     <!--    <string-array name="fruit_product_names">-->
@@ -90,17 +96,18 @@
 
 
     <array name="fruit_product_rating">
-        <item>5</item>
+        <item>4.75</item>
+        <item>4.25</item>
+        <item>4.5</item>
+        <item>3.25</item>
+        <item>5.0</item>
+        <item>4.75</item>
         <item>3.5</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
+        <item>4.0</item>
+        <item>3.25</item>
+        <item>4.5</item>
     </array>
+
 
     <string-array name="vegetable_product_names">
         <item>Paprika</item>
@@ -154,19 +161,20 @@
         <item>Erőteljes aromájú gyökérzöldség, levesek és szószok egyik fő ízesítője.</item>
     </string-array>
 
-
     <array name="vegetable_product_rating">
-        <item>5</item>
+        <item>4.25</item>
         <item>3.5</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
+        <item>3.75</item>
+        <item>4.0</item>
+        <item>5.0</item>
+        <item>4.5</item>
+        <item>3.25</item>
+        <item>4.75</item>
+        <item>3.5</item>
+        <item>4.0</item>
     </array>
+
+
 
     <string-array name="honey_product_names">
         <item>Akácméz</item>
@@ -220,19 +228,19 @@
         <item>Élénk citrusos ízvilágú méz, amely igazi frissességet hoz a reggelekbe.</item>
     </string-array>
 
-
     <array name="honey_product_rating">
-        <item>5</item>
-        <item>3.5</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
+        <item>4.25</item>
+        <item>4.5</item>
+        <item>3.75</item>
+        <item>4.0</item>
+        <item>4.5</item>
+        <item>5.0</item>
+        <item>4.75</item>
+        <item>3.25</item>
+        <item>4.0</item>
+        <item>4.0</item>
     </array>
+
 
 
     <string-array name="pasta_product_names">
@@ -287,18 +295,18 @@
         <item>Kisebb, fül alakú tészta, amely gyakran szerepel a tradicionális olasz ételekben, különösen levesekben vagy salátákban.</item>
     </string-array>
 
-
     <array name="pasta_product_rating">
-        <item>5</item>
-        <item>3.5</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
-        <item>4</item>
+        <item>4.5</item>
+        <item>4.0</item>
+        <item>3.75</item>
+        <item>4.25</item>
+        <item>3.25</item>
+        <item>5.0</item>
+        <item>4.0</item>
+        <item>3.75</item>
+        <item>4.75</item>
+        <item>3.75</item>
     </array>
+
 
 </resources>

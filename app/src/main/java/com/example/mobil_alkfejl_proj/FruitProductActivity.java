@@ -3,6 +3,8 @@ package com.example.mobil_alkfejl_proj;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.DrawableWrapper;
 import android.os.Bundle;
@@ -29,8 +31,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class FruitProductActivity extends AppCompatActivity {
+public class FruitProductActivity extends AppCompatActivity implements CartUpdateListener{
 
     private static final String LOG_TAG = FruitProductActivity.class.getName();
     private FirebaseUser user;
@@ -83,7 +86,6 @@ public class FruitProductActivity extends AppCompatActivity {
             fruitProductText.setVisibility(GONE);
         }
 
-
 //        Log.d(LOG_TAG, "initailizeDataaa");
         initailizeData();
 
@@ -112,12 +114,19 @@ public class FruitProductActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.shop_list_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.search_bar);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setTitle("Gyümölcsök");
+        }
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -132,6 +141,11 @@ public class FruitProductActivity extends AppCompatActivity {
             }
         });
 
+        if (user != null && user.isAnonymous()) {
+            MenuItem logoutButton = menu.findItem(R.id.log_out_button);
+            menu.findItem(R.id.log_in_button).setVisible(true);
+            logoutButton.setVisible(false);
+        }
         return true;
     }
 
@@ -143,15 +157,19 @@ public class FruitProductActivity extends AppCompatActivity {
 
         if (id == R.id.log_out_button) {
             FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, MainActivity.class);
             finish();
+            startActivity(intent);
             return true;
-        } else if (id == R.id.setting_button) {
-            return true;
-        } else if (id == R.id.cart) {
+        }
+//        else if (id == R.id.setting_button) {
+//            return true;}
+            else if (id == R.id.cart) {
             Log.d(LOG_TAG, "CART MEGYNOMVA");
 //            Intent intent = new Intent(this, CartActivity.class);
 //            startActivity(intent);
 //            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
@@ -161,15 +179,23 @@ public class FruitProductActivity extends AppCompatActivity {
             }
             return true;
         } else {
+            if (id == R.id.log_in_button){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
+
             return super.onOptionsItemSelected(item);
         }
     }
+    private SharedPreferences preferences;
 
     private void changeSpanCount(MenuItem item, int drawableId, int spanCount) {
         viewRow = !viewRow;
         item.setIcon(drawableId);
         GridLayoutManager layoutManager = (GridLayoutManager) mRecyclerView.getLayoutManager();
-        layoutManager.setSpanCount(spanCount);
+        if (layoutManager != null){
+            layoutManager.setSpanCount(spanCount);
+        }
     }
 
 
@@ -192,16 +218,25 @@ public class FruitProductActivity extends AppCompatActivity {
     }
 
 
+    @Override
     public void updateAlertIcon() {
-        cartItems = cartItems + 1;
-//        if(contentTextView != null){
-        if (0 < cartItems) {
-//            if (contentTextView != null){
-                contentTextView.setText(String.valueOf(cartItems));
-//            }
-        } else {
-            contentTextView.setText("");
+        CartActivity.getInstance().addItem();
+        int cartItems = CartActivity.getInstance().getItemCount();
+
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
         }
-        redCircle.setVisibility((cartItems > 0) ? VISIBLE : GONE);
+
+        if (redCircle != null) {
+            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
+        }
+//        invalidateOptionsMenu();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        invalidateOptionsMenu();
+    }
+
+
 }
