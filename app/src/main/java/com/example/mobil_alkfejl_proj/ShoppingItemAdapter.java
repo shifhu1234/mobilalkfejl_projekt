@@ -1,6 +1,9 @@
 package com.example.mobil_alkfejl_proj;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +15,14 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -25,11 +31,23 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
     private ArrayList<ShoppingItem> mShoppingItemsDataAll;
     private Context mContext;
     private int lastPosition = -1;
+    private FirebaseUser user;
+    private FirebaseAuth mAuth;
 
     ShoppingItemAdapter(Context context, ArrayList<ShoppingItem> itemsData) {
         this.mShoppingItemsData = itemsData;
         this.mShoppingItemsDataAll = itemsData;
         this.mContext = context;
+
+        mAuth = FirebaseAuth.getInstance();
+//        setContentView(R.layout.activity_fruit_product);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user != null) {
+//            Log.d(LOG_TAG, "Azonositott felhasznalo FRUITPRODUCT");
+//        } else {
+//            Log.d(LOG_TAG, "Nem sikerult bejelentkeztetni a felhasznalot");
+//            finish();
+//        }
     }
 
     @Override
@@ -108,8 +126,14 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             itemView.findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("Activity","Add button clicked!");
-                    ((FruitProductActivity)mContext).updateAlertIcon();
+//                    Log.d("Activity","Add button clicked!");
+
+                    if (!user.isAnonymous()){
+                        ((FruitProductActivity)mContext).updateAlertIcon();
+                    }else{
+                        Intent intent = new Intent(mContext, MainActivity.class);
+                        ContextCompat.startActivity(mContext, intent, null);
+                    }
                 }
             });
         }

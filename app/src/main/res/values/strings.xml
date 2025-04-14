@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mobil_alkfejl_proj</string>
+    <string name="app_name">Friss kosár</string>
     <string name="username">Felhasználónév</string>
     <string name="password">Jelszó</string>
     <string name="login">Bejelentkezés</string>
@@ -17,36 +17,287 @@
     <string name="into_basket">Kosárba</string>
 
 
+    <!--    <string-array name="fruit_product_names">-->
+    <!--        <item>Alma</item>-->
+    <!--        <item>Körte</item>-->
+    <!--        <item>Banán</item>-->
+    <!--    </string-array>-->
+
+    <!--    <array name="fruit_product_price">-->
+    <!--        <item>1000</item>-->
+    <!--        <item>20000</item>-->
+    <!--        <item>400</item>-->
+    <!--    </array>-->
+
+    <!--    <array name="fruit_product_image">-->
+    <!--        <item>@drawable/alma</item>-->
+    <!--        <item>@drawable/korte</item>-->
+    <!--        <item>@drawable/banan</item>-->
+    <!--    </array>-->
+
     <string-array name="fruit_product_names">
-        <item>Alma</item>
+        <item>Piros alma</item>
+        <item>Zöld szőlő</item>
+        <item>Narancs</item>
         <item>Körte</item>
         <item>Banán</item>
-    </string-array>
-
-    <string-array name="fruit_product_description">
-        <item>Almaaa</item>
-        <item>Körteeee</item>
-        <item>Banánnnnn</item>
+        <item>Eper</item>
+        <item>Szilva</item>
+        <item>Citrom</item>
+        <item>Mangó</item>
+        <item>Barack</item>
     </string-array>
 
     <array name="fruit_product_price">
-        <item>1000</item>
-        <item>20000</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>550</item>
         <item>400</item>
+        <item>900</item>
+        <item>750</item>
+        <item>650</item>
+        <item>1200</item>
+        <item>850</item>
     </array>
 
     <array name="fruit_product_image">
         <item>@drawable/alma</item>
+        <item>@drawable/szolo</item>
+        <item>@drawable/narancs</item>
         <item>@drawable/korte</item>
         <item>@drawable/banan</item>
+        <item>@drawable/eper</item>
+        <item>@drawable/szilva</item>
+        <item>@drawable/citrom</item>
+        <item>@drawable/mango</item>
+        <item>@drawable/barack</item>
     </array>
+
+    <string-array name="fruit_product_description">
+        <item>Édes és ropogós gyümölcs, gyakori tízóraira vagy uzsonnára. Tele van rosttal és C-vitaminnal.</item>
+        <item>Lédús és enyhén savanykás bogyók, frissítő nasi vagy borkészítés alapanyaga.</item>
+        <item>Vastag héjú, lédús citrusféle, híres magas C-vitamin-tartalmáról.</item>
+        <item>Lédús, édeskés gyümölcs puha hússal, kiváló magában vagy süteményekbe.</item>
+        <item>Hosszúkás, sárga gyümölcs, gyors energiát adó szénhidrátforrás.</item>
+        <item>Apró, piros, illatos gyümölcs, tele antioxidánsokkal és nyári hangulattal.</item>
+        <item>Lédús, enyhén savanykás gyümölcs, frissen vagy aszalva is népszerű.</item>
+        <item>Savanyú citrusféle, ízesítőként vagy italokban gyakran használt.</item>
+        <item>Trópusi, narancssárga húsú gyümölcs, édes ízvilággal és egzotikus aromával.</item>
+        <item>Bársonyos héjú, zamatos gyümölcs, kiváló lekvárnak és sütikbe is.</item>
+    </string-array>
+
 
     <array name="fruit_product_rating">
         <item>5</item>
         <item>3.5</item>
         <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+    </array>
+
+    <string-array name="vegetable_product_names">
+        <item>Paprika</item>
+        <item>Paradicsom</item>
+        <item>Fehér Répa</item>
+        <item>Uborka</item>
+        <item>Hagyma</item>
+        <item>Brokkoli</item>
+        <item>Karalábé</item>
+        <item>Kelbimbó</item>
+        <item>Sárgarépa</item>
+        <item>Zeller</item>
+    </string-array>
+
+    <array name="vegetable_product_price">
+        <item>300</item>
+        <item>400</item>
+        <item>200</item>
+        <item>250</item>
+        <item>150</item>
+        <item>350</item>
+        <item>180</item>
+        <item>320</item>
+        <item>220</item>
+        <item>280</item>
+    </array>
+
+    <array name="vegetable_product_image">
+        <item>@drawable/paprika</item>
+        <item>@drawable/paradicsom</item>
+        <item>@drawable/feherrepa</item>
+        <item>@drawable/uborka</item>
+        <item>@drawable/hagyma</item>
+        <item>@drawable/brokkoli</item>
+        <item>@drawable/karalabe</item>
+        <item>@drawable/kelbimbo</item>
+        <item>@drawable/sargarepa</item>
+        <item>@drawable/zeller</item>
+    </array>
+
+    <string-array name="vegetable_product_description">
+        <item>Ropogós, édeskés zöldség, gyakran használják salátákban vagy lecsóban.</item>
+        <item>Lédús és piros, alapvető hozzávaló szendvicsekhez, salátákhoz és szószokhoz.</item>
+        <item>Egyik fő alapanyaga a húslevesnek, karakteres ízű gyökérzöldség.</item>
+        <item>Frissítő, ropogós zöldség, kiváló salátákhoz és savanyítva is népszerű.</item>
+        <item>Erejéről ismert alapzöldség, ami számos étel ízét meghatározza.</item>
+        <item>Zöld színű, fás állagú zöldség, gazdag rostban és C-vitaminban.</item>
+        <item>Gömbölyded, enyhén édeskés zöldség, levesekben és főzelékekben kedvelt.</item>
+        <item>Apró káposztafélék, enyhén kesernyés ízzel, sütve vagy párolva finom.</item>
+        <item>Édes és ropogós gyökérzöldség, közkedvelt rágcsálnivaló és főzelék alap.</item>
+        <item>Erőteljes aromájú gyökérzöldség, levesek és szószok egyik fő ízesítője.</item>
+    </string-array>
+
+
+    <array name="vegetable_product_rating">
+        <item>5</item>
+        <item>3.5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+    </array>
+
+    <string-array name="honey_product_names">
+        <item>Akácméz</item>
+        <item>Virágporos méz</item>
+        <item>Rezgős méz</item>
+        <item>Lavendulás méz</item>
+        <item>Citromos méz</item>
+        <item>Eukaliptusz méz</item>
+        <item>Tölgyfás méz</item>
+        <item>Szőlővirág méz</item>
+        <item>Sárgabarackos méz</item>
+        <item>Citrusos méz</item>
+    </string-array>
+
+    <array name="honey_product_price">
+        <item>2000</item>
+        <item>1800</item>
+        <item>2200</item>
+        <item>2400</item>
+        <item>2100</item>
+        <item>2300</item>
+        <item>2500</item>
+        <item>1900</item>
+        <item>2000</item>
+        <item>2300</item>
+    </array>
+
+    <array name="honey_product_image">
+        <item>@drawable/akacmez</item>
+        <item>@drawable/viragporos_mez</item>
+        <item>@drawable/rezgos_mez</item>
+        <item>@drawable/lavendulas_mez</item>
+        <item>@drawable/citromos_mez</item>
+        <item>@drawable/eukaliptusz_mez</item>
+        <item>@drawable/tolgyfas_mez</item>
+        <item>@drawable/szolovirag_mez</item>
+        <item>@drawable/sargabarackos_mez</item>
+        <item>@drawable/citrusos_mez</item>
+    </array>
+
+    <string-array name="honey_product_description">
+        <item>Világos színű, enyhén édeskés méz, az akácvirágról gyűjtve – sokáig folyékony marad.</item>
+        <item>Gazdag ízvilágú méz, tele természetes virágporral – igazi immunerősítő különlegesség.</item>
+        <item>Kissé kristályos, rezgő állagú méz, amely különleges textúrájával tűnik ki.</item>
+        <item>Kellemesen virágos, aromás méz levendulából – nyugtató hatása miatt is kedvelt.</item>
+        <item>Frissítő ízvilágú méz, amely enyhe citromos jegyeket hordoz – kiváló teákhoz.</item>
+        <item>Erőteljes, enyhén mentolos aromájú méz eukaliptuszból – légúttisztító hatásáról ismert.</item>
+        <item>Sötétebb színű, fás jegyekkel bíró méz, tölgyes erdők mélyéről – igazán különleges élmény.</item>
+        <item>Finom, virágos illatú méz szőlővirágról, enyhén gyümölcsös utóízzel.</item>
+        <item>Sárgabarack aromával dúsított méz – gyümölcsösen édes, kiváló pirítósra vagy desszerthez.</item>
+        <item>Élénk citrusos ízvilágú méz, amely igazi frissességet hoz a reggelekbe.</item>
+    </string-array>
+
+
+    <array name="honey_product_rating">
+        <item>5</item>
+        <item>3.5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
     </array>
 
 
+    <string-array name="pasta_product_names">
+        <item>Spagetti</item>
+        <item>Penne</item>
+        <item>Farfalle</item>
+        <item>Tagliatelle</item>
+        <item>Fusilli</item>
+        <item>Rigatoni</item>
+        <item>Linguine</item>
+        <item>Cavatappi</item>
+        <item>Conchiglie</item>
+        <item>Orecchiette</item>
+    </string-array>
+
+    <array name="pasta_product_price">
+        <item>400</item>
+        <item>450</item>
+        <item>500</item>
+        <item>550</item>
+        <item>450</item>
+        <item>480</item>
+        <item>520</item>
+        <item>530</item>
+        <item>560</item>
+        <item>570</item>
+    </array>
+
+    <array name="pasta_product_image">
+        <item>@drawable/spagetti</item>
+        <item>@drawable/penne</item>
+        <item>@drawable/farfalle</item>
+        <item>@drawable/tagliatelle</item>
+        <item>@drawable/fusilli</item>
+        <item>@drawable/rigatoni</item>
+        <item>@drawable/linguine</item>
+        <item>@drawable/cavatappi</item>
+        <item>@drawable/conchiglie</item>
+        <item>@drawable/orecchiette</item>
+    </array>
+
+    <string-array name="pasta_product_description">
+        <item>Hosszú, vékony tészta, a klasszikus olasz étkezések elengedhetetlen része, gyakran paradicsomos vagy húsos szószokkal tálalva.</item>
+        <item>Rövid, cső alakú tészta, ideális sűrű, krémes szószokhoz, könnyen felveszi a szószokat.</item>
+        <item>Kis, pillangó formájú tészta, amely ideális salátákhoz vagy könnyű szószokhoz.</item>
+        <item>Széles, lapos tészta, amely tökéletes a gazdag húsos vagy zöldséges szószokhoz.</item>
+        <item>Csavart formájú tészta, amely könnyedén befogadja a különböző szószokat, ideális rakott ételekhez.</item>
+        <item>Erősebb, vastagabb tészta, amely jól megőrzi formáját sűrű, húsos szószokban.</item>
+        <item>Hosszú, lapos tészta, amely a hagyományos olasz étkezések részét képezi, remekül illik tengeri ételekhez.</item>
+        <item>Csavart, spirális tészta, amely kiválóan megfogja a szószokat, ideális akár húsos, akár zöldséges ételekhez.</item>
+        <item>Határozott, kagyló alakú tészta, amely különböző szószokkal könnyen párosítható, és remekül elkészíthető sütőben is.</item>
+        <item>Kisebb, fül alakú tészta, amely gyakran szerepel a tradicionális olasz ételekben, különösen levesekben vagy salátákban.</item>
+    </string-array>
+
+
+    <array name="pasta_product_rating">
+        <item>5</item>
+        <item>3.5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+    </array>
 
 </resources>

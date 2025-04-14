@@ -60,7 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/price"
             android:text="@string/into_basket"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

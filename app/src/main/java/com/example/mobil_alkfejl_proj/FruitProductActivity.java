@@ -1,5 +1,8 @@
 package com.example.mobil_alkfejl_proj;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.res.TypedArray;
 import android.graphics.drawable.DrawableWrapper;
 import android.os.Bundle;
@@ -38,17 +41,21 @@ public class FruitProductActivity extends AppCompatActivity {
     private FrameLayout redCircle;
     private TextView contentTextView;
     private int gridNumber = 1;
+    private boolean viewRow = true;
+    private int cartItems = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_fruit_product);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         mAuth = FirebaseAuth.getInstance();
 //        setContentView(R.layout.activity_fruit_product);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -117,7 +124,6 @@ public class FruitProductActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean viewRow = true;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -138,9 +144,9 @@ public class FruitProductActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
-                changeSpanCount(item, R.drawable.ic_view_gird, 1);
+                changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {
-                changeSpanCount(item, R.drawable.ic_view_row, 2);
+                changeSpanCount(item, R.drawable.ic_view_row, 1);
             }
             return true;
         } else {
@@ -162,7 +168,9 @@ public class FruitProductActivity extends AppCompatActivity {
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
         redCircle = (FrameLayout) rootView.findViewById(R.id.view_alert_red_circle);
         contentTextView = (TextView) rootView.findViewById(R.id.view_alert_count_textview);
-
+//        contentTextView.setText(String.valueOf(cartItems));
+//        Log.e(LOG_TAG, (String) contentTextView.getText());
+//        Log.e(LOG_TAG, "asd");
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,7 +180,6 @@ public class FruitProductActivity extends AppCompatActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-    private int cartItems = 0;
 
     public void updateAlertIcon() {
         cartItems = cartItems + 1;
@@ -184,6 +191,6 @@ public class FruitProductActivity extends AppCompatActivity {
         } else {
             contentTextView.setText("");
         }
-
+        redCircle.setVisibility((cartItems > 0) ? VISIBLE : GONE);
     }
 }

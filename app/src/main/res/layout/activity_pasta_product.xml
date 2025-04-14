@@ -6,5 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PastaProductActivity">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:id="@+id/pastaRecyclerView">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
