@@ -148,7 +148,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
         public void bindTo(ShoppingItem currentItem) {
             mTitleText.setText(currentItem.getName());
             mInfoText.setText(currentItem.getInfo());
-            mPriceText.setText(currentItem.getPrice());
+            mPriceText.setText(String.valueOf(currentItem.getPrice()));
             mRatingBar.setRating(currentItem.getRatedInfo());
 
 //            Glide.with(mContext).load(currentItem.getImageResource()).into(mItemImage);

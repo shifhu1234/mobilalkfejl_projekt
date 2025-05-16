@@ -26,25 +26,6 @@
     <string name="item_info_placeholder">item_info_placeholder</string>
     <string name="image_card">kepecske</string>
 
-
-    <!--    <string-array name="fruit_product_names">-->
-    <!--        <item>Alma</item>-->
-    <!--        <item>Körte</item>-->
-    <!--        <item>Banán</item>-->
-    <!--    </string-array>-->
-
-    <!--    <array name="fruit_product_price">-->
-    <!--        <item>1000</item>-->
-    <!--        <item>20000</item>-->
-    <!--        <item>400</item>-->
-    <!--    </array>-->
-
-    <!--    <array name="fruit_product_image">-->
-    <!--        <item>@drawable/alma</item>-->
-    <!--        <item>@drawable/korte</item>-->
-    <!--        <item>@drawable/banan</item>-->
-    <!--    </array>-->
-
     <string-array name="fruit_product_names">
         <item>Piros alma</item>
         <item>Zöld szőlő</item>
@@ -58,7 +39,7 @@
         <item>Barack</item>
     </string-array>
 
-    <array name="fruit_product_price">
+    <string-array name="fruit_product_price">
         <item>500</item>
         <item>600</item>
         <item>700</item>
@@ -69,7 +50,7 @@
         <item>650</item>
         <item>1200</item>
         <item>850</item>
-    </array>
+    </string-array>
 
     <array name="fruit_product_image">
         <item>@drawable/alma</item>
@@ -125,7 +106,7 @@
         <item>Zeller</item>
     </string-array>
 
-    <array name="vegetable_product_price">
+    <string-array name="vegetable_product_price">
         <item>300</item>
         <item>400</item>
         <item>200</item>
@@ -136,7 +117,7 @@
         <item>320</item>
         <item>220</item>
         <item>280</item>
-    </array>
+    </string-array>
 
     <array name="vegetable_product_image">
         <item>@drawable/paprika</item>
@@ -192,7 +173,7 @@
         <item>Citrusos méz</item>
     </string-array>
 
-    <array name="honey_product_price">
+    <string-array name="honey_product_price">
         <item>2000</item>
         <item>1800</item>
         <item>2200</item>
@@ -203,7 +184,7 @@
         <item>1900</item>
         <item>2000</item>
         <item>2300</item>
-    </array>
+    </string-array>
 
     <array name="honey_product_image">
         <item>@drawable/akacmez</item>
@@ -259,7 +240,7 @@
         <item>Orecchiette</item>
     </string-array>
 
-    <array name="pasta_product_price">
+    <string-array name="pasta_product_price">
         <item>400</item>
         <item>450</item>
         <item>500</item>
@@ -270,7 +251,7 @@
         <item>530</item>
         <item>560</item>
         <item>570</item>
-    </array>
+    </string-array>
 
     <array name="pasta_product_image">
         <item>@drawable/spagetti</item>

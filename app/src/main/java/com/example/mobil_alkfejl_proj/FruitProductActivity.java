@@ -19,6 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
@@ -45,6 +48,8 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     private final int cartItems = 0;
     private TextView fruitProductText;
     private SharedPreferences preferences;
+    private FirebaseFirestore mFirestore;
+    private CollectionReference mItems;
 
 
     @Override
@@ -67,6 +72,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             finish();
         }
 
+
         mRecyclerView = findViewById(R.id.fruitRecyclerView);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
 
@@ -83,34 +89,81 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         }
 
 //        Log.d(LOG_TAG, "initailizeDataaa");
-        initailizeData();
+
+//        mFirestore = FirebaseFirestore.getInstance();
+//        mItems = mFirestore.collection("FruitProducts");
+//        queryData();
+
+        firebaseUploader = new FirebaseUploader(
+                this,
+                mAdapter,
+                mItemList,
+                "FruitProducts",
+                R.array.fruit_product_names,
+                R.array.fruit_product_description,
+                R.array.fruit_product_price,
+                R.array.fruit_product_image,
+                R.array.fruit_product_rating
+        );
+
+        firebaseUploader.queryData();
+        //        initailizeData();
 
     }
 
-    private void initailizeData() {
-        String[] itemList = getResources().getStringArray(R.array.fruit_product_names);
-        String[] itemInfo = getResources().getStringArray(R.array.fruit_product_description);
-        String[] itemPrice = getResources().getStringArray(R.array.fruit_product_price);
+    private FirebaseUploader firebaseUploader;
+//    public void queryData() {
+//        mItemList.clear();
+//        mItems.orderBy("name").limit(10).get().addOnSuccessListener(queryDocumentSnapshots -> {
+//            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+//                ShoppingItem item = document.toObject(ShoppingItem.class);
+//                mItemList.add(item);
+//            }
+//
+//            if (mItemList.isEmpty()) {
+//                initailizeData();
+//                queryData();
+//            }
+//
+//            mAdapter.notifyDataSetChanged();
+//        });
+//    }
+//
+//    private void initailizeData() {
+//        String[] itemList = getResources().getStringArray(R.array.fruit_product_names);
+//        String[] itemInfo = getResources().getStringArray(R.array.fruit_product_description);
+//        String[] itemPrice = getResources().getStringArray(R.array.fruit_product_price);
+////        TypedArray itemPrice = getResources().obtainTypedArray(R.array.fruit_product_price);
+//        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.fruit_product_image);
+//        TypedArray itemsRate = getResources().obtainTypedArray(R.array.fruit_product_rating);
+//
+////        mItemList.clear();
+//
+//        for (int i = 0; i < itemList.length; i++) {
+//            if (itemPrice[i] != null) {
+////                String price = String.valueOf(itemPrice[i]);
+//                Log.e(LOG_TAG, "Az ara: " + itemPrice[i] + " " + itemPrice[i].getClass() + " ");
+//                int price = Integer.parseInt(itemPrice[i]);
+//                Log.e(LOG_TAG, "Az ara2: " + price);
+//                mItems.add(new ShoppingItem(
+//                        itemsImageResource.getResourceId(i, 0),
+//                        itemsRate.getFloat(i, 0),
+//                        price,
+//                        itemInfo[i],
+//                        itemList[i]));
+////                mItemList.add(new ShoppingItem(
+////                        itemsImageResource.getResourceId(i, 0),
+////                        itemsRate.getFloat(i, 0),
+////                        price,
+////                        itemInfo[i],
+////                        itemList[i]
+////                ));
+//            }
+//        }
+//        itemsImageResource.recycle();
 
-        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.fruit_product_image);
-        TypedArray itemsRate = getResources().obtainTypedArray(R.array.fruit_product_rating);
-
-        mItemList.clear();
-
-        for (int i = 0; i < itemList.length; i++) {
-            mItemList.add(new ShoppingItem(
-                    itemsImageResource.getResourceId(i, 0),
-                    itemsRate.getFloat(i, 0),
-                    itemPrice[i],
-                    itemInfo[i],
-                    itemList[i]
-            ));
-        }
-        itemsImageResource.recycle();
-        mAdapter.notifyDataSetChanged();
-    }
-
-
+    /// /        mAdapter.notifyDataSetChanged();
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);

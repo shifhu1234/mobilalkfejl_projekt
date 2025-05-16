@@ -1,13 +1,18 @@
 package com.example.mobil_alkfejl_proj;
 
+import android.content.SharedPreferences;
+
 public class ShoppingItem {
     private String name;
     private String info;
-    private String price;
+    private int price;
     private float ratedInfo;
-    private final int imageResource;
+    private int imageResource;
 
-    public ShoppingItem(int imageResource, float ratedInfo, String price, String info, String name) {
+    public ShoppingItem(){
+
+    }
+    public ShoppingItem(int imageResource, float ratedInfo, int price, String info, String name) {
         this.imageResource = imageResource;
         this.ratedInfo = ratedInfo;
         this.price = price;
@@ -23,7 +28,7 @@ public class ShoppingItem {
         return info;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 

@@ -79,31 +79,52 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             honeyProductText.setVisibility(GONE);
         }
 //        Log.d(LOG_TAG, "initailizeDataaa");
-        initailizeData();
+//        initailizeData();
+
+        firebaseUploader = new FirebaseUploader(
+                this,
+                mAdapter,
+                mItemList,
+                "HoneyProducts",
+                R.array.honey_product_names,
+                R.array.honey_product_description,
+                R.array.honey_product_price,
+                R.array.honey_product_image,
+                R.array.honey_product_rating
+        );
+
+        firebaseUploader.queryData();
+
     }
 
-    private void initailizeData() {
-        String[] itemList = getResources().getStringArray(R.array.honey_product_names);
-        String[] itemInfo = getResources().getStringArray(R.array.honey_product_description);
-        String[] itemPrice = getResources().getStringArray(R.array.honey_product_price);
-
-        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.honey_product_image);
-        TypedArray itemsRate = getResources().obtainTypedArray(R.array.honey_product_rating);
-
-        mItemList.clear();
-
-        for (int i = 0; i < itemList.length; i++) {
-            mItemList.add(new ShoppingItem(
-                    itemsImageResource.getResourceId(i, 0),
-                    itemsRate.getFloat(i, 0),
-                    itemPrice[i],
-                    itemInfo[i],
-                    itemList[i]
-            ));
-        }
-        itemsImageResource.recycle();
-        mAdapter.notifyDataSetChanged();
-    }
+    private FirebaseUploader firebaseUploader;
+//    private void initailizeData() {
+//        String[] itemList = getResources().getStringArray(R.array.honey_product_names);
+//        String[] itemInfo = getResources().getStringArray(R.array.honey_product_description);
+//        String[] itemPrice = getResources().getStringArray(R.array.honey_product_price);
+//
+//        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.honey_product_image);
+//        TypedArray itemsRate = getResources().obtainTypedArray(R.array.honey_product_rating);
+//
+//        mItemList.clear();
+//
+//        for (int i = 0; i < itemList.length; i++) {
+//            if (itemPrice[i] != null) {
+//               String price = String.valueOf(itemPrice[i]);
+//                Log.e(LOG_TAG, "Az ara: " + itemPrice[i] + " " + itemPrice[i].getClass() + " ");
+//                int price = Integer.parseInt(itemPrice[i]);
+//                mItemList.add(new ShoppingItem(
+//                        itemsImageResource.getResourceId(i, 0),
+//                        itemsRate.getFloat(i, 0),
+//                        price,
+//                        itemInfo[i],
+//                        itemList[i]
+//                ));
+//            }
+//        }
+//        itemsImageResource.recycle();
+//        mAdapter.notifyDataSetChanged();
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
