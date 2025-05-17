@@ -105,6 +105,7 @@ public class FirebaseUploader {
         mItems.document(item._getId()).update("productCount", item.getProductCount() + 1).addOnFailureListener(failure -> {
             Toast.makeText(context, "Elem hozzáadva! " + item._getId(), Toast.LENGTH_SHORT).show();
         });
+        queryData();
     }
 
     public void deleteItem(Context context, ShoppingItem item) {
@@ -115,5 +116,6 @@ public class FirebaseUploader {
         }).addOnFailureListener(failure -> {
             Toast.makeText(context, "Sikertelen törlés! " + item._getId(), Toast.LENGTH_SHORT).show();
         });
+        queryData();
     }
 }

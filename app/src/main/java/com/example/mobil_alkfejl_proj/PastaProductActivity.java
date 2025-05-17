@@ -80,7 +80,6 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
             pastaProductText.setVisibility(GONE);
         }
 
-
 //        Log.d(LOG_TAG, "initailizeDataaa");
 //        initailizeData();
         firebaseUploader = new FirebaseUploader(
@@ -100,34 +99,6 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
     }
 
     private FirebaseUploader firebaseUploader;
-
-//    private void initailizeData() {
-//        String[] itemList = getResources().getStringArray(R.array.pasta_product_names);
-//        String[] itemInfo = getResources().getStringArray(R.array.pasta_product_description);
-//        String[] itemPrice = getResources().getStringArray(R.array.pasta_product_price);
-//
-//        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.pasta_product_image);
-//        TypedArray itemsRate = getResources().obtainTypedArray(R.array.pasta_product_rating);
-//
-//        mItemList.clear();
-//
-//        for (int i = 0; i < itemList.length; i++) {
-//            if (itemPrice[i] != null) {
-//                String price = String.valueOf(itemPrice[i]);
-//                Log.e(LOG_TAG, "Az ara: " + itemPrice[i] + " " + itemPrice[i].getClass() + " ");
-//                int price = Integer.parseInt(itemPrice[i]);
-//                mItemList.add(new ShoppingItem(
-//                        itemsImageResource.getResourceId(i, 0),
-//                        itemsRate.getFloat(i, 0),
-//                        price,
-//                        itemInfo[i],
-//                        itemList[i]
-//                ));
-//            }
-//        }
-//        itemsImageResource.recycle();
-//        mAdapter.notifyDataSetChanged();
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -224,21 +195,6 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         return super.onPrepareOptionsMenu(menu);
     }
 
-
-//    @Override
-//    public void updateAlertIcon() {
-//        CartActivity.getInstance().addItem();
-//        int cartItems = CartActivity.getInstance().getItemCount();
-//
-//        if (contentTextView != null) {
-//            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
-//        }
-//
-//        if (redCircle != null) {
-//            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
-//        }
-////        invalidateOptionsMenu();
-//    }
 @Override
 public void updateAlertIcon(ShoppingItem item) {
     CartActivity.getInstance().addItem();
@@ -253,12 +209,12 @@ public void updateAlertIcon(ShoppingItem item) {
     }
 
     firebaseUploader.addItem(this, item);
-    firebaseUploader.queryData();
+//    firebaseUploader.queryData();
 }
 
     @Override
     public void deleteItem(ShoppingItem item) {
         firebaseUploader.deleteItem(this, item);
-        firebaseUploader.queryData();
+//        firebaseUploader.queryData();
     }
 }

@@ -232,13 +232,13 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         }
 
         firebaseUploader.addItem(this, item);
-        firebaseUploader.queryData();
+//        firebaseUploader.queryData();
     }
 
     @Override
     public void deleteItem(ShoppingItem item) {
         firebaseUploader.deleteItem(this, item);
-        firebaseUploader.queryData();
+//        firebaseUploader.queryData();
     }
 
 
