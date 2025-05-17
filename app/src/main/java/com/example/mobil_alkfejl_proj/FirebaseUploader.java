@@ -102,8 +102,8 @@ public class FirebaseUploader {
 
     public void addItem(Context context, ShoppingItem item) {
 //        invalidateOptionsMenu();
-        mItems.document(item._getId()).update("productCount", item.getProductCount() + 1).addOnFailureListener(failure -> {
-            Toast.makeText(context, "Elem hozzáadva! " + item._getId(), Toast.LENGTH_SHORT).show();
+        mItems.document(item._getId()).update("productCount", item.getProductCount() + 1).addOnSuccessListener(success -> {
+            Toast.makeText(context, item.getName() + " a kosárhoz hozzáadva!", Toast.LENGTH_SHORT).show();
         });
         queryData();
     }
@@ -112,7 +112,8 @@ public class FirebaseUploader {
 //        invalidateOptionsMenu();
         DocumentReference ref = mItems.document(item._getId());
         ref.delete().addOnSuccessListener(success -> {
-            Log.d(LOG_TAG, "Item törölve: " + item._getId());
+            Log.d(LOG_TAG, "Elem törölve: " + item._getId());
+//            Toast.makeText(context, "Elem törölve! " + item._getId(), Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(failure -> {
             Toast.makeText(context, "Sikertelen törlés! " + item._getId(), Toast.LENGTH_SHORT).show();
         });

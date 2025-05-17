@@ -1,5 +1,6 @@
 package com.example.mobil_alkfejl_proj;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -13,6 +14,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -159,6 +161,8 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                         }
                     })
                     .into(mItemImage);
+
+
             itemView.findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -169,6 +173,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                     } else {
                         Intent intent = new Intent(mContext, MainActivity.class);
                         ContextCompat.startActivity(mContext, intent, null);
+                        Toast.makeText(mContext, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -182,6 +187,22 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                         }
                     } else {
                         Intent intent = new Intent(mContext, MainActivity.class);
+                        ContextCompat.startActivity(mContext, intent, null);
+//                        Toast.makeText(mContext, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            View menuCartButton = ((Activity) mContext).findViewById(R.id.cart);
+            menuCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (user.isAnonymous()) {
+                            Intent intent = new Intent(mContext, MainActivity.class);
+                            ContextCompat.startActivity(mContext, intent, null);
+                        Toast.makeText(mContext, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(mContext, CartActivity.class);
                         ContextCompat.startActivity(mContext, intent, null);
                     }
                 }

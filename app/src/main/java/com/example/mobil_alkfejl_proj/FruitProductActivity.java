@@ -165,11 +165,22 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
 //        else if (id == R.id.setting_button) {
 //            return true;}
         else if (id == R.id.cart) {
-            Log.d(LOG_TAG, "CART MEGYNOMVA");
-//            Intent intent = new Intent(this, CartActivity.class);
-//            startActivity(intent);
-            Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
+//            Log.d(LOG_TAG, "CART MEGYNOMVA");
+//
+//            if (!user.isAnonymous()){
+//                Intent intent = new Intent(this, CartActivity.class);
+//                startActivity(intent);
+//            }
+//            else{
+//                Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+//            }
+            if (user.isAnonymous()){
+                Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+            }
+
             return true;
+//            Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
+//            return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
