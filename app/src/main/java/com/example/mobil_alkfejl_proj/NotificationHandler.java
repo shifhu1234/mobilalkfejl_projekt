@@ -32,8 +32,8 @@ public class NotificationHandler {
         NotificationChannel channel = new NotificationChannel
                 (CHANNEL_ID, "Friss kosár", NotificationManager.IMPORTANCE_HIGH);
 
-        channel.enableLights(true);
-        channel.setLightColor(Color.RED);
+//        channel.enableLights(true);
+//        channel.setLightColor(Color.RED);
         channel.enableVibration(true);
         channel.setDescription("Köszönjük a vásárlást! ;)");
 
@@ -45,10 +45,12 @@ public class NotificationHandler {
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT| PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setContentTitle("Friss kosár")
+                .setContentTitle("Vásárlás")
                 .setContentText(message)
                 .setSmallIcon(R.mipmap.ic_launch)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         mNotifyManager.notify(NOTIFICATION_ID, builder.build());
     }

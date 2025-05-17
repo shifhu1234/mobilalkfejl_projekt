@@ -115,7 +115,8 @@ public class FirebaseUploader {
         Toast.makeText(context, item.getName() + " a kosárhoz hozzáadva!", Toast.LENGTH_SHORT).show();
 //        });
         CartManager.getInstance().addItem(item);
-        queryData();
+        //NE FRISSITSE FOLYAMAT
+//        queryData();
 //        createTransaction(item);
     }
 

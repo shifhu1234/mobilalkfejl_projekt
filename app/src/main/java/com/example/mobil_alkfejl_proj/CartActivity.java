@@ -75,7 +75,7 @@ public class CartActivity extends AppCompatActivity {
         Button payButton = findViewById(R.id.payButton);
         Button returnButton = findViewById(R.id.returnButton);
         Button emptyCartButton = findViewById(R.id.emptyCartButton);
-
+//        mNotification.send("Test notification");
         payButton.setOnClickListener(v -> {
             Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, CategoryActivity.class);
