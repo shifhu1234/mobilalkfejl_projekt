@@ -225,19 +225,40 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
     }
 
 
-    @Override
-    public void updateAlertIcon() {
-        CartActivity.getInstance().addItem();
-        int cartItems = CartActivity.getInstance().getItemCount();
+//    @Override
+//    public void updateAlertIcon() {
+//        CartActivity.getInstance().addItem();
+//        int cartItems = CartActivity.getInstance().getItemCount();
+//
+//        if (contentTextView != null) {
+//            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+//        }
+//
+//        if (redCircle != null) {
+//            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
+//        }
+////        invalidateOptionsMenu();
+//    }
+@Override
+public void updateAlertIcon(ShoppingItem item) {
+    CartActivity.getInstance().addItem();
+    int cartItems = CartActivity.getInstance().getItemCount();
 
-        if (contentTextView != null) {
-            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
-        }
-
-        if (redCircle != null) {
-            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
-        }
-//        invalidateOptionsMenu();
+    if (contentTextView != null) {
+        contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
     }
 
+    if (redCircle != null) {
+        redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
+    }
+
+    firebaseUploader.addItem(this, item);
+    firebaseUploader.queryData();
+}
+
+    @Override
+    public void deleteItem(ShoppingItem item) {
+        firebaseUploader.deleteItem(this, item);
+        firebaseUploader.queryData();
+    }
 }

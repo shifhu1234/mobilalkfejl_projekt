@@ -3,9 +3,12 @@ package com.example.mobil_alkfejl_proj;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ public class FirebaseUploader {
     private final int itemImageArr;
     private final int itemRatingArr;
 
+    private final CollectionReference mItems;
+
     public FirebaseUploader(Context context, ShoppingItemAdapter mAdapter, List<ShoppingItem> itemList,
                             String collectionName,
                             int itemNameArr, int itemInfoArr, int itemPriceArr,
@@ -42,6 +47,8 @@ public class FirebaseUploader {
         this.itemRatingArr = itemRatingArr;
 
         this.mFirestore = FirebaseFirestore.getInstance();
+        this.mItems = mFirestore.collection(collectionName);
+//        queryData();
     }
 
     public void queryData() {
@@ -49,19 +56,21 @@ public class FirebaseUploader {
         CollectionReference itemsRef = mFirestore.collection(collectionName);
         mItemList.clear();
 
-        itemsRef.orderBy("name").limit(10).get().addOnSuccessListener(queryDocumentSnapshots -> {
-            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                ShoppingItem item = document.toObject(ShoppingItem.class);
-                mItemList.add(item);
-            }
+        itemsRef.orderBy("productCount", Query.Direction.DESCENDING).limit(10).get().
+                addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        ShoppingItem item = document.toObject(ShoppingItem.class);
+                        item.setId(document.getId());
+                        mItemList.add(item);
+                    }
 
-            if (mItemList.isEmpty()) {
-                initializeData(itemsRef);
-                queryData();
-            }
+                    if (mItemList.isEmpty()) {
+                        initializeData(itemsRef);
+                        queryData();
+                    }
 
-            mAdapter.notifyDataSetChanged();
-        });
+                    mAdapter.notifyDataSetChanged();
+                });
     }
 
     private void initializeData(CollectionReference itemsRef) {
@@ -80,7 +89,8 @@ public class FirebaseUploader {
                         itemRate.getFloat(i, 0),
                         price,
                         itemInfo[i],
-                        itemName[i]
+                        itemName[i],
+                        0
                 );
                 itemsRef.add(item);
             }
@@ -88,5 +98,22 @@ public class FirebaseUploader {
 
         itemImage.recycle();
         itemRate.recycle();
+    }
+
+    public void addItem(Context context, ShoppingItem item) {
+//        invalidateOptionsMenu();
+        mItems.document(item._getId()).update("productCount", item.getProductCount() + 1).addOnFailureListener(failure -> {
+            Toast.makeText(context, "Elem hozzáadva! " + item._getId(), Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    public void deleteItem(Context context, ShoppingItem item) {
+//        invalidateOptionsMenu();
+        DocumentReference ref = mItems.document(item._getId());
+        ref.delete().addOnSuccessListener(success -> {
+            Log.d(LOG_TAG, "Item törölve: " + item._getId());
+        }).addOnFailureListener(failure -> {
+            Toast.makeText(context, "Sikertelen törlés! " + item._getId(), Toast.LENGTH_SHORT).show();
+        });
     }
 }

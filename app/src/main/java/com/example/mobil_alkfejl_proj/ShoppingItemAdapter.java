@@ -130,32 +130,18 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
             mItemImage = itemView.findViewById(R.id.itemImage);
             mRatingBar = itemView.findViewById(R.id.ratingBar);
 
-            itemView.findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!user.isAnonymous()) {
-                        if (cartUpdateListener != null) {
-                            cartUpdateListener.updateAlertIcon();
-                        }
-                    } else {
-                        Intent intent = new Intent(mContext, MainActivity.class);
-                        ContextCompat.startActivity(mContext, intent, null);
-                    }
-                }
-            });
-        }
 
+        }
+        public void deleteItem(ShoppingItem item){
+
+        }
         public void bindTo(ShoppingItem currentItem) {
             mTitleText.setText(currentItem.getName());
             mInfoText.setText(currentItem.getInfo());
             mPriceText.setText(String.valueOf(currentItem.getPrice()));
             mRatingBar.setRating(currentItem.getRatedInfo());
 
-//            Glide.with(mContext).load(currentItem.getImageResource()).into(mItemImage);
-//            Glide.with(mContext)
-//                    .load(currentItem.getImageResource())
-//                    .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade(750))
-//                    .into(mItemImage);
+
 
             Glide.with(mContext)
                     .load(currentItem.getImageResource())
@@ -173,6 +159,34 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                         }
                     })
                     .into(mItemImage);
+            itemView.findViewById(R.id.add_to_cart).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!user.isAnonymous()) {
+                        if (cartUpdateListener != null) {
+                            cartUpdateListener.updateAlertIcon(currentItem);
+                        }
+                    } else {
+                        Intent intent = new Intent(mContext, MainActivity.class);
+                        ContextCompat.startActivity(mContext, intent, null);
+                    }
+                }
+            });
+
+            itemView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!user.isAnonymous()) {
+                        if (cartUpdateListener != null) {
+                            cartUpdateListener.deleteItem(currentItem);
+                        }
+                    } else {
+                        Intent intent = new Intent(mContext, MainActivity.class);
+                        ContextCompat.startActivity(mContext, intent, null);
+                    }
+                }
+            });
+
 
         }
     }

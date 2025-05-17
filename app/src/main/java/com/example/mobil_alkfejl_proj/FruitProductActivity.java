@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -32,6 +33,8 @@ import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Document;
 
 public class FruitProductActivity extends AppCompatActivity implements CartUpdateListener {
 
@@ -47,9 +50,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     private boolean viewRow = true;
     private final int cartItems = 0;
     private TextView fruitProductText;
-    private SharedPreferences preferences;
-    private FirebaseFirestore mFirestore;
-    private CollectionReference mItems;
+//    private CollectionReference mItems;
 
 
     @Override
@@ -112,58 +113,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     }
 
     private FirebaseUploader firebaseUploader;
-//    public void queryData() {
-//        mItemList.clear();
-//        mItems.orderBy("name").limit(10).get().addOnSuccessListener(queryDocumentSnapshots -> {
-//            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-//                ShoppingItem item = document.toObject(ShoppingItem.class);
-//                mItemList.add(item);
-//            }
-//
-//            if (mItemList.isEmpty()) {
-//                initailizeData();
-//                queryData();
-//            }
-//
-//            mAdapter.notifyDataSetChanged();
-//        });
-//    }
-//
-//    private void initailizeData() {
-//        String[] itemList = getResources().getStringArray(R.array.fruit_product_names);
-//        String[] itemInfo = getResources().getStringArray(R.array.fruit_product_description);
-//        String[] itemPrice = getResources().getStringArray(R.array.fruit_product_price);
-////        TypedArray itemPrice = getResources().obtainTypedArray(R.array.fruit_product_price);
-//        TypedArray itemsImageResource = getResources().obtainTypedArray(R.array.fruit_product_image);
-//        TypedArray itemsRate = getResources().obtainTypedArray(R.array.fruit_product_rating);
-//
-////        mItemList.clear();
-//
-//        for (int i = 0; i < itemList.length; i++) {
-//            if (itemPrice[i] != null) {
-////                String price = String.valueOf(itemPrice[i]);
-//                Log.e(LOG_TAG, "Az ara: " + itemPrice[i] + " " + itemPrice[i].getClass() + " ");
-//                int price = Integer.parseInt(itemPrice[i]);
-//                Log.e(LOG_TAG, "Az ara2: " + price);
-//                mItems.add(new ShoppingItem(
-//                        itemsImageResource.getResourceId(i, 0),
-//                        itemsRate.getFloat(i, 0),
-//                        price,
-//                        itemInfo[i],
-//                        itemList[i]));
-////                mItemList.add(new ShoppingItem(
-////                        itemsImageResource.getResourceId(i, 0),
-////                        itemsRate.getFloat(i, 0),
-////                        price,
-////                        itemInfo[i],
-////                        itemList[i]
-////                ));
-//            }
-//        }
-//        itemsImageResource.recycle();
 
-    /// /        mAdapter.notifyDataSetChanged();
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -269,7 +219,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
 
 
     @Override
-    public void updateAlertIcon() {
+    public void updateAlertIcon(ShoppingItem item) {
         CartActivity.getInstance().addItem();
         int cartItems = CartActivity.getInstance().getItemCount();
 
@@ -280,8 +230,17 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         if (redCircle != null) {
             redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
         }
-//        invalidateOptionsMenu();
+
+        firebaseUploader.addItem(this, item);
+        firebaseUploader.queryData();
     }
+
+    @Override
+    public void deleteItem(ShoppingItem item) {
+        firebaseUploader.deleteItem(this, item);
+        firebaseUploader.queryData();
+    }
+
 
     @Override
     protected void onResume() {

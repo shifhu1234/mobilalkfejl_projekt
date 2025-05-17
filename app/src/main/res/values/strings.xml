@@ -25,6 +25,7 @@
     <string name="cart_icon">kosarka</string>
     <string name="item_info_placeholder">item_info_placeholder</string>
     <string name="image_card">kepecske</string>
+    <string name="delete">Törlés</string>
 
     <string-array name="fruit_product_names">
         <item>Piros alma</item>

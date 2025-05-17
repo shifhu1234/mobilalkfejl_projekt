@@ -221,8 +221,23 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         return super.onPrepareOptionsMenu(menu);
     }
 
+//    @Override
+//    public void updateAlertIcon() {
+//        CartActivity.getInstance().addItem();
+//        int cartItems = CartActivity.getInstance().getItemCount();
+//
+//        if (contentTextView != null) {
+//            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+//        }
+//
+//        if (redCircle != null) {
+//            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
+//        }
+
+    /// /        invalidateOptionsMenu();
+//    }
     @Override
-    public void updateAlertIcon() {
+    public void updateAlertIcon(ShoppingItem item) {
         CartActivity.getInstance().addItem();
         int cartItems = CartActivity.getInstance().getItemCount();
 
@@ -233,7 +248,15 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         if (redCircle != null) {
             redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
         }
-//        invalidateOptionsMenu();
+
+        firebaseUploader.addItem(this, item);
+        firebaseUploader.queryData();
+    }
+
+    @Override
+    public void deleteItem(ShoppingItem item) {
+        firebaseUploader.deleteItem(this, item);
+        firebaseUploader.queryData();
     }
 
 }
