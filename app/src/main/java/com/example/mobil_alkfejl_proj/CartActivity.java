@@ -1,6 +1,13 @@
 package com.example.mobil_alkfejl_proj;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +25,7 @@ public class CartActivity extends AppCompatActivity {
 
     private RecyclerView cartRecyclerView;
     private CartAdapter cartAdapter;
+    private NotificationHandler mNotification;
     private List<ShoppingItem> cartItems;
 
     public CartActivity() {
@@ -60,6 +68,52 @@ public class CartActivity extends AppCompatActivity {
         cartAdapter = new CartAdapter(this, cartItems);
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         cartRecyclerView.setAdapter(cartAdapter);
+
+        mNotification = new NotificationHandler(this);
+
+        TextView emptyCartMessage = findViewById(R.id.emptyCartMessage);
+        Button payButton = findViewById(R.id.payButton);
+        Button returnButton = findViewById(R.id.returnButton);
+        Button emptyCartButton = findViewById(R.id.emptyCartButton);
+
+        payButton.setOnClickListener(v -> {
+            Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, CategoryActivity.class);
+            startActivity(intent);
+            CartManager.getInstance().clearCart();
+            CartActivity.getInstance().clearCart();
+            mNotification.send("Köszönjük a vásárlást!");
+        });
+
+        returnButton.setOnClickListener(v -> {
+//                Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, CategoryActivity.class);
+            startActivity(intent);
+//                CartManager.getInstance().clearCart();
+        });
+
+        emptyCartButton.setOnClickListener(v -> {
+            Toast.makeText(CartActivity.this, "Kosár ürítve!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, CategoryActivity.class);
+            startActivity(intent);
+            CartManager.getInstance().clearCart();
+            CartActivity.getInstance().clearCart();
+        });
+        if (!cartItems.isEmpty()) {
+
+
+            emptyCartMessage.setVisibility(GONE);
+            cartRecyclerView.setVisibility(VISIBLE);
+            payButton.setVisibility(VISIBLE);
+//            returnButton.setVisibility(VISIBLE);
+            emptyCartButton.setVisibility(VISIBLE);
+        } else {
+            emptyCartMessage.setVisibility(VISIBLE);
+            cartRecyclerView.setVisibility(GONE);
+            payButton.setVisibility(GONE);
+//            returnButton.setVisibility(GONE);
+            emptyCartButton.setVisibility(GONE);
+        }
 
 
     }

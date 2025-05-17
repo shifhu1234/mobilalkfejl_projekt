@@ -4,13 +4,10 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
 import androidx.core.view.ViewCompat;
@@ -21,9 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
@@ -35,7 +29,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Document;
 
 public class FruitProductActivity extends AppCompatActivity implements CartUpdateListener {
 
@@ -49,9 +42,8 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     private TextView contentTextView;
     private final int gridNumber = 1;
     private boolean viewRow = true;
-    private final int cartItems = 0;
     private TextView fruitProductText;
-//    private CollectionReference mItems;
+    private CollectionReference mItems;
 
 
     @Override
@@ -108,7 +100,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         firebaseUploader.queryData();
         //        initailizeData();
     }
-
     private FirebaseUploader firebaseUploader;
 
     @Override
@@ -201,6 +192,20 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
         redCircle = rootView.findViewById(R.id.view_alert_red_circle);
         contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
+
+        int cartItems = 0;
+        if (CartActivity.getInstance() != null) {
+            cartItems = CartActivity.getInstance().getItemCount();
+        }
+
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+        }
+
+        if (redCircle != null) {
+            redCircle.setVisibility(cartItems > 0 ? View.VISIBLE : View.GONE);
+        }
+
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -239,6 +244,18 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
+
+//        if (CartActivity.getInstance() != null) {
+//            int cartItems = CartActivity.getInstance().getItemCount();
+//
+//            if (contentTextView != null) {
+//                contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+//            }
+//
+//            if (redCircle != null) {
+//                redCircle.setVisibility(cartItems > 0 ? View.VISIBLE : View.GONE);
+//            }
+//        }
     }
 
 

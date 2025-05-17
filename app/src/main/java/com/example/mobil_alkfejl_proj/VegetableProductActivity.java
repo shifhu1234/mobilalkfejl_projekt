@@ -144,8 +144,7 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
-        }
-        else if (id == R.id.cart) {
+        } else if (id == R.id.cart) {
             Log.d(LOG_TAG, "CART MEGYNOMVA");
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
@@ -182,6 +181,19 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
         redCircle = rootView.findViewById(R.id.view_alert_red_circle);
         contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
 
+        int cartItems = 0;
+        if (CartActivity.getInstance() != null) {
+            cartItems = CartActivity.getInstance().getItemCount();
+        }
+
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+        }
+
+        if (redCircle != null) {
+            redCircle.setVisibility(cartItems > 0 ? View.VISIBLE : View.GONE);
+        }
+
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,28 +203,29 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
         return super.onPrepareOptionsMenu(menu);
     }
 
-@Override
-public void updateAlertIcon(ShoppingItem item) {
-    CartActivity.getInstance().addItem();
-    int cartItems = CartActivity.getInstance().getItemCount();
+    @Override
+    public void updateAlertIcon(ShoppingItem item) {
+        CartActivity.getInstance().addItem();
+        int cartItems = CartActivity.getInstance().getItemCount();
 
-    if (contentTextView != null) {
-        contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
-    }
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+        }
 
-    if (redCircle != null) {
-        redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
-    }
+        if (redCircle != null) {
+            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
+        }
 
-    firebaseUploader.addItem(this, item);
+        firebaseUploader.addItem(this, item);
 //    firebaseUploader.queryData();
-}
+    }
 
     @Override
     public void deleteItem(ShoppingItem item) {
         firebaseUploader.deleteItem(this, item);
 //        firebaseUploader.queryData();
     }
+
     @Override
     protected void onResume() {
         super.onResume();

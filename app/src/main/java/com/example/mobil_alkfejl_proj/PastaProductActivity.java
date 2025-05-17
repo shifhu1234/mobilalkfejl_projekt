@@ -186,6 +186,19 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         redCircle = rootView.findViewById(R.id.view_alert_red_circle);
         contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
 
+        int cartItems = 0;
+        if (CartActivity.getInstance() != null) {
+            cartItems = CartActivity.getInstance().getItemCount();
+        }
+
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+        }
+
+        if (redCircle != null) {
+            redCircle.setVisibility(cartItems > 0 ? View.VISIBLE : View.GONE);
+        }
+
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

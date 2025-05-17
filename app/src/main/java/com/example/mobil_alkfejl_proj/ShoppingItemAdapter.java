@@ -179,20 +179,21 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                 }
             });
 
-            itemView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!user.isAnonymous()) {
-                        if (cartUpdateListener != null) {
-                            cartUpdateListener.deleteItem(currentItem);
-                        }
-                    } else {
-                        Intent intent = new Intent(mContext, MainActivity.class);
-                        ContextCompat.startActivity(mContext, intent, null);
-//                        Toast.makeText(mContext, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            // DELETE
+//            itemView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (!user.isAnonymous()) {
+//                        if (cartUpdateListener != null) {
+//                            cartUpdateListener.deleteItem(currentItem);
+//                        }
+//                    } else {
+//                        Intent intent = new Intent(mContext, MainActivity.class);
+//                        ContextCompat.startActivity(mContext, intent, null);
+////                        Toast.makeText(mContext, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
 
             View menuCartButton = ((Activity) mContext).findViewById(R.id.cart);
             menuCartButton.setOnClickListener(new View.OnClickListener() {

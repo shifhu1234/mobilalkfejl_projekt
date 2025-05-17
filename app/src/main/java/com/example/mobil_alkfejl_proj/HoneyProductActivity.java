@@ -4,7 +4,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -183,6 +182,19 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
         redCircle = rootView.findViewById(R.id.view_alert_red_circle);
         contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
+
+        int cartItems = 0;
+        if (CartActivity.getInstance() != null) {
+            cartItems = CartActivity.getInstance().getItemCount();
+        }
+
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+        }
+
+        if (redCircle != null) {
+            redCircle.setVisibility(cartItems > 0 ? View.VISIBLE : View.GONE);
+        }
 
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
