@@ -78,7 +78,6 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         } else {
             honeyProductText.setVisibility(GONE);
         }
-//        Log.d(LOG_TAG, "initailizeDataaa");
 //        initailizeData();
 
         firebaseUploader = new FirebaseUploader(

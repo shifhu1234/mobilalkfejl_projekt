@@ -5,6 +5,8 @@ import android.content.res.TypedArray;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -12,7 +14,9 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseUploader {
 
@@ -20,16 +24,21 @@ public class FirebaseUploader {
 
     private final Context context;
     private final FirebaseFirestore mFirestore;
-    private final ShoppingItemAdapter mAdapter;
-    private final List<ShoppingItem> mItemList;
-    private final String collectionName;
-    private final int itemNameArr;
-    private final int itemInfoArr;
-    private final int itemPriceArr;
-    private final int itemImageArr;
-    private final int itemRatingArr;
+    private ShoppingItemAdapter mAdapter;
+    private List<ShoppingItem> mItemList;
+    private String collectionName;
+    private int itemNameArr;
+    private int itemInfoArr;
+    private int itemPriceArr;
+    private int itemImageArr;
+    private int itemRatingArr;
 
-    private final CollectionReference mItems;
+    private CollectionReference mItems;
+
+    public FirebaseUploader(Context context) {
+        this.context = context;
+        this.mFirestore = FirebaseFirestore.getInstance();
+    }
 
     public FirebaseUploader(Context context, ShoppingItemAdapter mAdapter, List<ShoppingItem> itemList,
                             String collectionName,
@@ -56,7 +65,7 @@ public class FirebaseUploader {
         CollectionReference itemsRef = mFirestore.collection(collectionName);
         mItemList.clear();
 
-        itemsRef.orderBy("productCount", Query.Direction.DESCENDING).limit(10).get().
+        itemsRef.orderBy("name", Query.Direction.DESCENDING).limit(10).get().
                 addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         ShoppingItem item = document.toObject(ShoppingItem.class);
@@ -89,8 +98,8 @@ public class FirebaseUploader {
                         itemRate.getFloat(i, 0),
                         price,
                         itemInfo[i],
-                        itemName[i],
-                        0
+                        itemName[i]
+//                        0
                 );
                 itemsRef.add(item);
             }
@@ -102,10 +111,12 @@ public class FirebaseUploader {
 
     public void addItem(Context context, ShoppingItem item) {
 //        invalidateOptionsMenu();
-        mItems.document(item._getId()).update("productCount", item.getProductCount() + 1).addOnSuccessListener(success -> {
-            Toast.makeText(context, item.getName() + " a kosárhoz hozzáadva!", Toast.LENGTH_SHORT).show();
-        });
+//        mItems.document(item._getId()).update("productCount", item.getProductCount() + 1).addOnSuccessListener(success -> {
+        Toast.makeText(context, item.getName() + " a kosárhoz hozzáadva!", Toast.LENGTH_SHORT).show();
+//        });
+        CartManager.getInstance().addItem(item);
         queryData();
+//        createTransaction(item);
     }
 
     public void deleteItem(Context context, ShoppingItem item) {
@@ -119,4 +130,60 @@ public class FirebaseUploader {
         });
         queryData();
     }
+
+    public void createUser(String email, String name) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        CollectionReference itemsRef = mFirestore.collection("Users");
+
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            Map<String, Object> userData = new HashMap<>();
+            userData.put("email", email);
+            userData.put("name", name);
+            userData.put("uid", uid);
+
+            FirebaseFirestore.getInstance().collection("Users")
+                    .document(uid)
+                    .set(userData)
+                    .addOnSuccessListener(aVoid -> {
+                        Log.d(LOG_TAG, "MENTVE");
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e(LOG_TAG, "HIBA MENTES KOZBEN");
+                    });
+        } else {
+            Log.w(LOG_TAG, "NINCS BEJELENTKEZVE SENKI");
+        }
+    }
+
+    public void createTransaction(ShoppingItem item) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        CollectionReference itemsRef = mFirestore.collection("Transactions");
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DocumentReference newTransactionRef = mFirestore.collection("Transactions").document();
+            String transactionId = newTransactionRef.getId();
+
+            Map<String, Object> transactionData = new HashMap<>();
+            transactionData.put("id", transactionId);
+            transactionData.put("itemName", item.getName());
+            transactionData.put("price", item.getPrice());
+            transactionData.put("quantity", 1);
+            transactionData.put("userId", userId);
+
+            newTransactionRef.set(transactionData)
+                    .addOnSuccessListener(aVoid -> {
+                        Log.d(LOG_TAG, "TRANZAKCIO HOZZAADVA: " + transactionId);
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.w(LOG_TAG, "HIBA MENTES KOZBEN");
+                    });
+        } else {
+            Log.w(LOG_TAG, "NINCS BEJELENTKEZVE SENKI");
+        }
+    }
+
+
 }

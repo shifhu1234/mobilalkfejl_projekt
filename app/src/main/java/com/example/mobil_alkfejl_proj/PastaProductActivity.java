@@ -195,22 +195,22 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         return super.onPrepareOptionsMenu(menu);
     }
 
-@Override
-public void updateAlertIcon(ShoppingItem item) {
-    CartActivity.getInstance().addItem();
-    int cartItems = CartActivity.getInstance().getItemCount();
+    @Override
+    public void updateAlertIcon(ShoppingItem item) {
+        CartActivity.getInstance().addItem();
+        int cartItems = CartActivity.getInstance().getItemCount();
 
-    if (contentTextView != null) {
-        contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
-    }
+        if (contentTextView != null) {
+            contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+        }
 
-    if (redCircle != null) {
-        redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
-    }
+        if (redCircle != null) {
+            redCircle.setVisibility((cartItems > 0) ? View.VISIBLE : View.GONE);
+        }
 
-    firebaseUploader.addItem(this, item);
+        firebaseUploader.addItem(this, item);
 //    firebaseUploader.queryData();
-}
+    }
 
     @Override
     public void deleteItem(ShoppingItem item) {

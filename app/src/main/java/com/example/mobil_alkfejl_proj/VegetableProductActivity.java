@@ -145,12 +145,8 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
         }
-//        else if (id == R.id.setting_button) {
-//            return true;}
         else if (id == R.id.cart) {
             Log.d(LOG_TAG, "CART MEGYNOMVA");
-//            Intent intent = new Intent(this, CartActivity.class);
-//            startActivity(intent);
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
             return true;

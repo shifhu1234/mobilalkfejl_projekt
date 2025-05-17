@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="32dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="20dp"
@@ -23,7 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/image_card" />
+            android:contentDescription="@string/image_card"
+            android:scaleType="fitCenter"
+            />
 
         <TextView
             android:id="@+id/itemTitle"

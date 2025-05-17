@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends AppCompatActivity {
     private static final String LOG_TAG = RegisterActivity.class.getName();
     private static final String PREF_KEY = MainActivity.class.getPackage().toString();
+    private FirebaseUploader firebaseUploader;
 //    private static final int SECRET_KEY = 986;
 
     EditText userNameEditText;
@@ -64,7 +65,8 @@ public class RegisterActivity extends AppCompatActivity {
         userPasswordAgainEditText.setText(password);
 
         mAuth = FirebaseAuth.getInstance();
-        Log.i(LOG_TAG, "onCreate");
+//        Log.i(LOG_TAG, "onCreate");
+        firebaseUploader = new FirebaseUploader(this);
     }
 
     public void register(View view) {
@@ -110,6 +112,8 @@ public class RegisterActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d(LOG_TAG, "Felhasznalo letrehozva");
                     startShopping();
+
+                    firebaseUploader.createUser(userEmail, userName);
                 } else {
                     Log.d(LOG_TAG, "Sikertelen felhasználó létrehozás", task.getException());
                     if (task.getException() != null) {

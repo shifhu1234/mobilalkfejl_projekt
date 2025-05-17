@@ -45,7 +45,6 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void navigateToFruitProducts(View view) {
-//        Log.i(LOG_TAG, fruitCatergory.getSceneString());
         Intent intent = new Intent(this, FruitProductActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);

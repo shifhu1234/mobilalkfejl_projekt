@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.MenuItemCompat;
 import androidx.core.view.ViewCompat;
@@ -73,7 +74,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             finish();
         }
 
-
         mRecyclerView = findViewById(R.id.fruitRecyclerView);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridNumber));
 
@@ -88,8 +88,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         } else {
             fruitProductText.setVisibility(GONE);
         }
-
-//        Log.d(LOG_TAG, "initailizeDataaa");
 
 //        mFirestore = FirebaseFirestore.getInstance();
 //        mItems = mFirestore.collection("FruitProducts");
@@ -109,7 +107,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
 
         firebaseUploader.queryData();
         //        initailizeData();
-
     }
 
     private FirebaseUploader firebaseUploader;
@@ -161,26 +158,14 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
-        }
-//        else if (id == R.id.setting_button) {
-//            return true;}
-        else if (id == R.id.cart) {
-//            Log.d(LOG_TAG, "CART MEGYNOMVA");
-//
-//            if (!user.isAnonymous()){
-//                Intent intent = new Intent(this, CartActivity.class);
-//                startActivity(intent);
-//            }
-//            else{
-//                Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
-//            }
-            if (user.isAnonymous()){
+        } else if (id == R.id.cart) {
+            if (user.isAnonymous()) {
                 Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
             }
-
             return true;
-//            Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
-//            return true;
         } else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
@@ -216,9 +201,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         FrameLayout rootView = (FrameLayout) alertMenuItem.getActionView();
         redCircle = rootView.findViewById(R.id.view_alert_red_circle);
         contentTextView = rootView.findViewById(R.id.view_alert_count_textview);
-//        contentTextView.setText(String.valueOf(cartItems));
-//        Log.e(LOG_TAG, (String) contentTextView.getText());
-//        Log.e(LOG_TAG, "asd");
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

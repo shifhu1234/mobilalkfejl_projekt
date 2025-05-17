@@ -169,6 +169,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                     if (!user.isAnonymous()) {
                         if (cartUpdateListener != null) {
                             cartUpdateListener.updateAlertIcon(currentItem);
+//                            CartManager.getInstance().addItem(currentItem);
                         }
                     } else {
                         Intent intent = new Intent(mContext, MainActivity.class);

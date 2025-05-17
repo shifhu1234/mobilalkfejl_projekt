@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordET.getText().toString();
 
         if (userName.isEmpty() || password.isEmpty()) {
-//            Log.d(LOG_TAG, "Üres felhasználónév vagy jelszó");
             Toast.makeText(this, "Kérlek, töltsd ki mindkét mezőt!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -75,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "Felhasznalo bejelentkeztetve");
                     startLogin();
                 } else {
-
                     Log.d(LOG_TAG, "Sikertelen felhasználó létrehozás", task.getException());
                     if (task.getException() != null) {
                         Toast.makeText(MainActivity.this, "Sikertelen belépés!", Toast.LENGTH_SHORT).show();
@@ -102,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
     private void startLogin() {
         Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
-//        Toast.makeText(this, "Üdvözlünk!", Toast.LENGTH_SHORT).show();
         overridePendingTransition(R.anim.slide_in_row, R.anim.slide_in_row_2);
     }
 
