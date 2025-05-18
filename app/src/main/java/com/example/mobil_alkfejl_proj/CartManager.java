@@ -32,4 +32,9 @@ public class CartManager {
     public int getItemCount() {
         return cartItems.size();
     }
+
+    public void removeItem(ShoppingItem item) {
+        cartItems.remove(item);
+    }
+
 }

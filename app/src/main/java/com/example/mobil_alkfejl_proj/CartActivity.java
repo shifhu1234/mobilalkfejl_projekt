@@ -46,6 +46,11 @@ public class CartActivity extends AppCompatActivity {
         }
         return instance;
     }
+    public void removeItem() {
+        if (itemCount > 0) {
+            itemCount--;
+        }
+    }
 
     public void addItem() {
         itemCount++;
@@ -53,6 +58,10 @@ public class CartActivity extends AppCompatActivity {
 
     public int getItemCount() {
         return itemCount;
+    }
+
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
     }
 
     public void clearCart() {
@@ -153,6 +162,33 @@ public class CartActivity extends AppCompatActivity {
             emptyCartButton.setVisibility(GONE);
         }
     }
+
+    public void recalculateTotal() {
+        totalPoints = 0;
+        points = 0;
+
+        for (ShoppingItem item : CartManager.getInstance().getCartItems()) {
+            totalPoints += item.getPrice();
+            points += item.getPrice();
+        }
+
+        TextView finalPriceTextView = findViewById(R.id.finalPriceTextView);
+        finalPriceTextView.setText(String.valueOf("Végösszeg: " + totalPoints + " Ft"));
+
+        TextView emptyCartMessage = findViewById(R.id.emptyCartMessage);
+        Button payButton = findViewById(R.id.payButton);
+        Button emptyCartButton = findViewById(R.id.emptyCartButton);
+
+        if (CartManager.getInstance().getCartItems().isEmpty()) {
+            emptyCartMessage.setVisibility(VISIBLE);
+            cartRecyclerView.setVisibility(GONE);
+            payButton.setVisibility(GONE);
+            emptyCartButton.setVisibility(GONE);
+            finalPriceTextView.setVisibility(GONE);
+        }
+    }
+
+
 
     @Override
     protected void onResume() {
