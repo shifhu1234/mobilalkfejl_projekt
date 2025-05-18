@@ -214,7 +214,10 @@ public class ProfileActivity extends AppCompatActivity {
                                     user.delete()
                                             .addOnSuccessListener(success2 -> {
                                                 Toast.makeText(this, "Felhasználó törölve! :(", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                                                FirebaseAuth.getInstance().signOut();
+                                                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(intent);
                                                 finish();
                                             })
                                             .addOnFailureListener(failure -> Toast.makeText(this, "HIBA", Toast.LENGTH_SHORT).show());
