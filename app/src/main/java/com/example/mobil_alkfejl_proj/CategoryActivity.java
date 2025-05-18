@@ -66,16 +66,15 @@ public class CategoryActivity extends AppCompatActivity {
             }
         }
 
-
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+
         if (requestCode == 1234) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 Toast.makeText(this, "Értesítések engedélyezve!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Értesítések letiltva! Engedélyezd a telefonod beállításaiban!", Toast.LENGTH_SHORT).show();

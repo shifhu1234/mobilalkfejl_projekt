@@ -230,5 +230,6 @@ public class ProfileActivity extends AppCompatActivity {
     public void backToCategories(View view) {
         Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
     }
 }

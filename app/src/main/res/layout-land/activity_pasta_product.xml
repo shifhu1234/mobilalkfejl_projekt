@@ -1,38 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".PastaProductActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pastaRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/refreshLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/pastaProductTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="24dp"
             android:text="@string/log_in_to_buy"
             android:textAlignment="center"
-            android:layout_marginTop="32dp"
             android:textSize="20sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pastaRecyclerView"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/return_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/pastaProductTextView"
-            android:scrollbars="vertical"
+            android:onClick="returnToCategories"
+            android:text="@string/back_to_categories"
+            android:layout_marginBottom="4dp"
+            />
+        <Button
+            android:id="@+id/queryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/refresh_list" />
 
-            >
+        <Spinner
+            android:id="@+id/querySpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/fruit_queries"
+            android:spinnerMode="dropdown" />
 
-        </androidx.recyclerview.widget.RecyclerView>
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:id="@+id/main"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".PastaProductActivity">-->
+
+
+    <!--    <RelativeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent">-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/pastaProductTextView"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_alignParentStart="true"-->
+    <!--            android:layout_alignParentTop="true"-->
+    <!--            android:layout_alignParentEnd="true"-->
+    <!--            android:text="@string/log_in_to_buy"-->
+    <!--            android:textAlignment="center"-->
+    <!--            android:layout_marginTop="32dp"-->
+    <!--            android:textSize="20sp" />-->
+
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/pastaRecyclerView"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_below="@id/pastaProductTextView"-->
+    <!--            android:scrollbars="vertical"-->
+
+    <!--            >-->
+
+    <!--        </androidx.recyclerview.widget.RecyclerView>-->
+    <!--    </RelativeLayout>-->
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->

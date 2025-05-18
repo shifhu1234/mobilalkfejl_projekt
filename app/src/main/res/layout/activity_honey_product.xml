@@ -54,7 +54,7 @@
             android:id="@+id/honeyRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/honeyProductTextView"
+            android:layout_below="@id/refreshLayout"
             android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>

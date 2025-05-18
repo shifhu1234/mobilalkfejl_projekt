@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="64dp"
-        >
+        android:layout_marginBottom="64dp">
 
         <TextView
             android:id="@+id/vegetableProductTextView"
@@ -26,6 +25,7 @@
             android:text="@string/log_in_to_buy"
             android:textAlignment="center"
             android:textSize="20sp" />
+
         <LinearLayout
             android:id="@+id/refreshLayout"
             android:layout_width="wrap_content"
@@ -49,11 +49,12 @@
                 android:spinnerMode="dropdown" />
 
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vegetableRecyclerView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/vegetableProductTextView"
+            android:layout_below="@id/refreshLayout"
             android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>

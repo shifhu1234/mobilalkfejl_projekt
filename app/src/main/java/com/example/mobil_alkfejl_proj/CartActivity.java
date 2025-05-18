@@ -110,6 +110,7 @@ public class CartActivity extends AppCompatActivity {
             Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, CategoryActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
 
 //            TextView pointsInput = findViewById(R.id.accountPoints);
 
@@ -140,6 +141,7 @@ public class CartActivity extends AppCompatActivity {
         returnButton.setOnClickListener(v -> {
 //                Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, CategoryActivity.class);
+            overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             startActivity(intent);
 //                CartManager.getInstance().clearCart();
         });
@@ -148,6 +150,7 @@ public class CartActivity extends AppCompatActivity {
             Toast.makeText(CartActivity.this, "Kosár ürítve!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, CategoryActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             CartManager.getInstance().clearCart();
             CartActivity.getInstance().clearCart();
         });

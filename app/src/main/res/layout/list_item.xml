@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Ft"
+                    android:text="@string/currency"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
