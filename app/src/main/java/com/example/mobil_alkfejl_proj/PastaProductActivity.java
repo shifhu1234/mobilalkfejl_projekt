@@ -230,4 +230,10 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         firebaseUploader.deleteItem(this, item);
 //        firebaseUploader.queryData();
     }
+
+    public void returnToCategories(View view) {
+        Intent intent = new Intent(this, CategoryActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
+    }
 }
