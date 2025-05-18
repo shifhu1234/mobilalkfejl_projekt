@@ -143,6 +143,7 @@ public class FirebaseUploader {
             userData.put("email", email);
             userData.put("name", name);
             userData.put("uid", uid);
+            userData.put("points", 0);
 
             FirebaseFirestore.getInstance().collection("Users")
                     .document(uid)

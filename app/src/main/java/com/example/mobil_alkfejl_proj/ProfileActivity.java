@@ -31,8 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
     private final int tag = 1;
     ImageView image;
 
-    TextView accountUserName, accountEmail;
-
+    TextView accountUserName, accountEmail, accountPoints;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +50,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         accountUserName = findViewById(R.id.accountUserName);
         accountEmail = findViewById(R.id.accountEmail);
+        accountPoints = findViewById(R.id.accountPoints);
 
 //        accountUserName.setText(String.valueOf(user.getDisplayName()));
 //        accountEmail.setText(String.valueOf(user.getEmail()));
         if (user != null) {
-            accountEmail.setText(user.getEmail());
+            accountEmail.setText("Email címed: " +user.getEmail());
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("Users")
@@ -64,10 +64,13 @@ public class ProfileActivity extends AppCompatActivity {
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                             String name = document.getString("name");
+                            long points = document.getLong("points");
                             if (name != null) {
-                                accountUserName.setText(name);
+                                accountUserName.setText("Neved: " + name);
+                                accountPoints.setText("Pontjaid száma: " + String.valueOf(points));
                             } else {
                                 accountUserName.setText("ANONYMOUS");
+                                accountPoints.setText(String.valueOf(0));
                             }
                         }
                     })
@@ -153,7 +156,7 @@ public class ProfileActivity extends AppCompatActivity {
                         db.collection("Users")
                                 .document(document.getId())
                                 .update("name", newUsername)
-                                .addOnSuccessListener(aVoid -> {
+                                .addOnSuccessListener(success -> {
                                     accountUserName.setText(newUsername);
                                     Toast.makeText(this, "Felhasználónév frissítve!", Toast.LENGTH_SHORT).show();
                                     usernameInput.setText("");
@@ -219,9 +222,9 @@ public class ProfileActivity extends AppCompatActivity {
                         db.collection("Users")
                                 .document(document.getId())
                                 .delete()
-                                .addOnSuccessListener(aVoid -> {
+                                .addOnSuccessListener(success -> {
                                     user.delete()
-                                            .addOnSuccessListener(success -> {
+                                            .addOnSuccessListener(success2 -> {
                                                 Toast.makeText(this, "Felhasználó törölve! :(", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
                                                 finish();

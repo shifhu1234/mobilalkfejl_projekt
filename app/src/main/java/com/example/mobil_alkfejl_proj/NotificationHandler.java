@@ -45,7 +45,7 @@ public class NotificationHandler {
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT| PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
-                .setContentTitle("Vásárlás")
+                .setContentTitle("Köszönjük a vásárlás!")
                 .setContentText(message)
                 .setSmallIcon(R.mipmap.ic_launch)
                 .setContentIntent(pendingIntent)

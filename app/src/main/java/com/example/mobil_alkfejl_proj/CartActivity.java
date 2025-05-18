@@ -5,6 +5,7 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,16 +18,23 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
     private static CartActivity instance;
     private int itemCount;
-
+    private FirebaseUser user;
+    private FirebaseAuth mAuth;
     private RecyclerView cartRecyclerView;
     private CartAdapter cartAdapter;
     private NotificationHandler mNotification;
     private List<ShoppingItem> cartItems;
+    private static final String LOG_TAG = CartActivity.class.getName();
 
     public CartActivity() {
         itemCount = 0;
@@ -51,6 +59,9 @@ public class CartActivity extends AppCompatActivity {
         itemCount = 0;
     }
 
+    private int points = 0;
+    private int totalPoints = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +72,8 @@ public class CartActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        mAuth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         cartRecyclerView = findViewById(R.id.activityCartRecyclerView);
         cartItems = CartManager.getInstance().getCartItems();
 
@@ -71,19 +83,57 @@ public class CartActivity extends AppCompatActivity {
 
         mNotification = new NotificationHandler(this);
 
+//        for (int i = 0; i < cartItems.size(); i++) {
+//            points += cartItems.get(i).getPrice();
+//        }
+//        points /= 100;
         TextView emptyCartMessage = findViewById(R.id.emptyCartMessage);
         Button payButton = findViewById(R.id.payButton);
         Button returnButton = findViewById(R.id.returnButton);
         Button emptyCartButton = findViewById(R.id.emptyCartButton);
 //        mNotification.send("Test notification");
+//        int finalPoints = points;
+
+
+        for (ShoppingItem item : cartItems) {
+            points += item.getPrice();
+            totalPoints += item.getPrice();
+        }
+//        points /= 100;
+
+        TextView finalPriceTextView = findViewById(R.id.finalPriceTextView);
+        finalPriceTextView.setText("Végösszeg: " + totalPoints + " Ft");
+
+
         payButton.setOnClickListener(v -> {
             Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, CategoryActivity.class);
             startActivity(intent);
+
+//            TextView pointsInput = findViewById(R.id.accountPoints);
+
+            if (user != null) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("Users")
+                        .whereEqualTo("email", user.getEmail())
+                        .get()
+                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                long currentPoints = document.getLong("points");
+                                long newPoints = currentPoints + points / 100;
+                                db.collection("Users").document(document.getId())
+                                        .update("points", newPoints)
+                                        .addOnSuccessListener(success -> Log.d(LOG_TAG, "Pontok frissitve"))
+                                        .addOnFailureListener(failure -> Log.e(LOG_TAG, "Pontok nem frissultek", failure));
+                            }
+                        });
+            }
             CartManager.getInstance().clearCart();
             CartActivity.getInstance().clearCart();
-            mNotification.send("Köszönjük a vásárlást!");
+            mNotification.send("Jóváírtunk számodra " + points/100 + " pontot!");
+
         });
+
 
         returnButton.setOnClickListener(v -> {
 //                Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
@@ -105,16 +155,25 @@ public class CartActivity extends AppCompatActivity {
             emptyCartMessage.setVisibility(GONE);
             cartRecyclerView.setVisibility(VISIBLE);
             payButton.setVisibility(VISIBLE);
+            finalPriceTextView.setVisibility(VISIBLE);
 //            returnButton.setVisibility(VISIBLE);
             emptyCartButton.setVisibility(VISIBLE);
         } else {
             emptyCartMessage.setVisibility(VISIBLE);
             cartRecyclerView.setVisibility(GONE);
             payButton.setVisibility(GONE);
+            finalPriceTextView.setVisibility(GONE);
 //            returnButton.setVisibility(GONE);
             emptyCartButton.setVisibility(GONE);
         }
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TextView finalPriceTextView = findViewById(R.id.finalPriceTextView);
+        finalPriceTextView.setText("Végösszeg: " + points + " Ft");
     }
 }
