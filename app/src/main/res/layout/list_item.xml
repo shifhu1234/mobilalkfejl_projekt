@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/itemImage"
-            android:fontFamily="monospace"
+            android:fontFamily="sans-serif-condensed-medium"
             android:textStyle="bold"
             android:padding="8dp"
             android:text="@string/item_info_placeholder"
@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/subTitle"
-            android:fontFamily="casual"
+            android:fontFamily="sans-serif-condensed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ratingBar"
