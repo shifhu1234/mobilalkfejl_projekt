@@ -17,6 +17,13 @@
         android:title="@string/cart_menu_option"
         app:actionLayout="@layout/custom_menu_item"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/account"
+        android:icon="@drawable/account"
+        android:title="@string/account"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/view_selector"
         android:icon="@drawable/ic_view_row"

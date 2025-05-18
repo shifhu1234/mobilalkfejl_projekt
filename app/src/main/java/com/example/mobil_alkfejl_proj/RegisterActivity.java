@@ -121,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (errorMessage != null && errorMessage.contains("email address is already in use")) {
                             Toast.makeText(RegisterActivity.this, "Ez az e-mail cím már használatban van!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Hiba! " + errorMessage, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "HIBA" + errorMessage, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

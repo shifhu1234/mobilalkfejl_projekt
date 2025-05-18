@@ -132,6 +132,12 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             menu.findItem(R.id.log_in_button).setVisible(true);
             logoutButton.setVisible(false);
         }
+
+        if (user.isAnonymous()){
+            MenuItem accountButton = menu.findItem(R.id.account);
+            accountButton.setVisible(false);
+        }
+
         return true;
     }
 
@@ -157,7 +163,11 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
                 startActivity(intent);
             }
             return true;
-        } else if (id == R.id.view_selector) {
+        }else if(id == R.id.account){
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                return true;
+        }else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {
@@ -244,6 +254,8 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
+
+
 
 //        if (CartActivity.getInstance() != null) {
 //            int cartItems = CartActivity.getInstance().getItemCount();

@@ -147,10 +147,10 @@ public class FirebaseUploader {
             FirebaseFirestore.getInstance().collection("Users")
                     .document(uid)
                     .set(userData)
-                    .addOnSuccessListener(aVoid -> {
+                    .addOnSuccessListener(success -> {
                         Log.d(LOG_TAG, "MENTVE");
                     })
-                    .addOnFailureListener(e -> {
+                    .addOnFailureListener(failure -> {
                         Log.e(LOG_TAG, "HIBA MENTES KOZBEN");
                     });
         } else {
@@ -175,10 +175,10 @@ public class FirebaseUploader {
             transactionData.put("userId", userId);
 
             newTransactionRef.set(transactionData)
-                    .addOnSuccessListener(aVoid -> {
+                    .addOnSuccessListener(success -> {
                         Log.d(LOG_TAG, "TRANZAKCIO HOZZAADVA: " + transactionId);
                     })
-                    .addOnFailureListener(e -> {
+                    .addOnFailureListener(failure -> {
                         Log.w(LOG_TAG, "HIBA MENTES KOZBEN");
                     });
         } else {

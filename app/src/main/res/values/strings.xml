@@ -29,6 +29,19 @@
     <string name="empty_the_cart">Kosár ürítése</string>
     <string name="pay">Fizetés</string>
     <string name="still_buying">Vissza a vásárláshoz</string>
+    <string name="profile">Profil</string>
+    <string name="account">Profil</string>
+    <string name="take_account_pic">Készíts képet!</string>
+    <string name="accountData">Adatok:</string>
+    <string name="placeholderaccountemail">placeholderAccountEmail</string>
+    <string name="placeholderaccountusername">placeholderAccountUserName</string>
+    <string name="profile_delete">Profil törlése (örökre)</string>
+    <string name="delete_confirm_edittext">Megerősítéshez: email cím</string>
+    <string name="change_password">Jelszó változtatása</string>
+    <string name="new_password">Új jelszó</string>
+    <string name="change_username">Felhasználónév változtatása</string>
+    <string name="new_username">Új felhasználónév</string>
+    <string name="back_to_categories">Vissza a főoldalra</string>
 
     <string-array name="fruit_product_names">
         <item>Piros alma</item>
@@ -163,7 +176,6 @@
     </array>
 
 
-
     <string-array name="honey_product_names">
         <item>Akácméz</item>
         <item>Virágporos méz</item>
@@ -228,7 +240,6 @@
         <item>4.0</item>
         <item>4.0</item>
     </array>
-
 
 
     <string-array name="pasta_product_names">

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="16dp"
+    tools:context=".ProfileActivity">
+
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/accountDetails"
+        >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:srcCompat="@drawable/account" />
+
+
+        <Button
+            android:id="@+id/takePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="openCamera"
+            android:text="@string/take_account_pic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/accountDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        >
+
+        <TextView
+            android:id="@+id/accountData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="casual"
+            android:text="@string/accountData"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/accountUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/accountData"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/placeholderaccountusername"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accountData" />
+
+        <TextView
+            android:id="@+id/accountEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/accountUserName"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/placeholderaccountemail"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accountUserName" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountDetails"
+        app:layout_constraintBottom_toTopOf="@+id/backToMainPageConstrait"
+        >
+
+        <EditText
+            android:id="@+id/usernameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="32dp"
+            android:hint="@string/new_username" />
+
+        <Button
+            android:id="@+id/changeUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/usernameInput"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="@string/change_username"
+            android:onClick="changeUsername"
+            />
+
+        <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changeUserName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/new_password"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/changePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/passwordInput"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="@string/change_password"
+            android:onClick="changePassword"
+            />
+
+        <EditText
+            android:id="@+id/deleteConfirmInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/changePassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/delete_confirm_edittext" />
+
+        <Button
+            android:id="@+id/deleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/deleteConfirmInput"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:text="@string/profile_delete"
+            android:onClick="deleteAccount"/>
+
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/backToMainPageConstrait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <Button
+            android:id="@+id/backToMainPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:text="@string/back_to_categories"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="backToCategories"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
