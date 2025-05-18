@@ -40,11 +40,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="casual"
                 android:text="@string/fruitsCategory"
                 android:textSize="24sp"
-
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +50,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/fruitCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Vegetable -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/vegetableCategory"
             android:layout_width="wrap_content"
@@ -79,21 +76,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="casual"
                 android:text="@string/vegetablesCategory"
                 android:textSize="24sp"
-
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vegetableCategoryImage"
-
-                />
+                app:layout_constraintTop_toBottomOf="@+id/vegetableCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Pasta -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pastaCategory"
             android:layout_width="wrap_content"
@@ -101,9 +93,7 @@
             android:onClick="navigateToPastaProducts"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/vegetableCategory"
-            app:layout_constraintTop_toTopOf="parent"
-
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pastaCategoryImage"
@@ -120,11 +110,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="casual"
                 android:text="@string/pastasCategory"
                 android:textSize="24sp"
-
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +120,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/pastaCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Honey -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/honeyCategory"
             android:layout_width="wrap_content"
@@ -141,9 +128,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/pastaCategory"
-            app:layout_constraintTop_toTopOf="parent"
-
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/honeyCategoryImage"
@@ -160,16 +145,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:fontFamily="casual"
                 android:text="@string/honeysCategory"
                 android:textSize="24sp"
-
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-
                 app:layout_constraintTop_toBottomOf="@+id/honeyCategoryImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

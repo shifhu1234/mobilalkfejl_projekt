@@ -13,7 +13,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +56,6 @@ public class FirebaseUploader {
 
         this.mFirestore = FirebaseFirestore.getInstance();
         this.mItems = mFirestore.collection(collectionName);
-//        queryData();
     }
 
     public void queryData() {
@@ -72,12 +70,10 @@ public class FirebaseUploader {
                         item.setId(document.getId());
                         mItemList.add(item);
                     }
-
                     if (mItemList.isEmpty()) {
                         initializeData(itemsRef);
                         queryData();
                     }
-
                     mAdapter.notifyDataSetChanged();
                 });
     }
@@ -110,10 +106,7 @@ public class FirebaseUploader {
     }
 
     public void addItem(Context context, ShoppingItem item) {
-//        invalidateOptionsMenu();
-//        mItems.document(item._getId()).update("productCount", item.getProductCount() + 1).addOnSuccessListener(success -> {
         Toast.makeText(context, item.getName() + " a kosárhoz hozzáadva!", Toast.LENGTH_SHORT).show();
-//        });
         CartManager.getInstance().addItem(item);
         //NE FRISSITSE FOLYAMAT
 //        queryData();
@@ -121,11 +114,9 @@ public class FirebaseUploader {
     }
 
     public void deleteItem(Context context, ShoppingItem item) {
-//        invalidateOptionsMenu();
         DocumentReference ref = mItems.document(item._getId());
         ref.delete().addOnSuccessListener(success -> {
             Log.d(LOG_TAG, "Elem törölve: " + item._getId());
-//            Toast.makeText(context, "Elem törölve! " + item._getId(), Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(failure -> {
             Toast.makeText(context, "Sikertelen törlés! " + item._getId(), Toast.LENGTH_SHORT).show();
         });

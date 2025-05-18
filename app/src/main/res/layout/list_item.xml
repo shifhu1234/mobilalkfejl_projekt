@@ -10,9 +10,7 @@
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="20dp"
     card_view:cardBackgroundColor="@android:color/transparent"
-    card_view:contentPadding="2dp"
-    >
-
+    card_view:contentPadding="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,11 +30,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/itemImage"
             android:fontFamily="sans-serif-condensed-medium"
-            android:textStyle="bold"
             android:padding="8dp"
             android:text="@string/item_info_placeholder"
             android:textColor="?android:textColorSecondary"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -49,10 +47,10 @@
 
         <TextView
             android:id="@+id/subTitle"
-            android:fontFamily="sans-serif-condensed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/ratingBar"
+            android:fontFamily="sans-serif-condensed"
             android:padding="8dp"
             android:text="@string/item_info_placeholder" />
 
@@ -111,15 +109,7 @@
                 android:paddingHorizontal="32dp"
                 android:text="@string/into_basket" />
 
-            <!--            <Button-->
-            <!--                android:id="@+id/delete"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_margin="5dp"-->
-            <!--                android:text="@string/delete" />-->
-
         </LinearLayout>
-
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

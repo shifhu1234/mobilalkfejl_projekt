@@ -4,7 +4,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -107,8 +106,6 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
             refreshLin.setLayoutParams(params);
         }
 
-//        Log.d(LOG_TAG, "initailizeDataaa");
-//        initailizeData();
         firebaseUploader = new FirebaseUploader(
                 this,
                 mAdapter,
@@ -188,7 +185,7 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
             logoutButton.setVisible(false);
         }
 
-        if (user.isAnonymous()){
+        if (user.isAnonymous()) {
             MenuItem accountButton = menu.findItem(R.id.account);
             accountButton.setVisible(false);
         }
@@ -208,9 +205,7 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
-        }
-//        else if (id == R.id.setting_button) {return true;}
-        else if (id == R.id.cart) {
+        } else if (id == R.id.cart) {
             if (user.isAnonymous()) {
                 Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
             } else {
@@ -218,11 +213,11 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
                 startActivity(intent);
             }
             return true;
-        } else if(id == R.id.account){
+        } else if (id == R.id.account) {
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
             return true;
-        }else if (id == R.id.view_selector) {
+        } else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {

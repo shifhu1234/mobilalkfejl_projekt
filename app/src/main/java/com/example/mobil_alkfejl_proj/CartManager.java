@@ -17,7 +17,6 @@ public class CartManager {
         }
         return instance;
     }
-
     public void addItem(ShoppingItem item) {
         cartItems.add(item);
     }

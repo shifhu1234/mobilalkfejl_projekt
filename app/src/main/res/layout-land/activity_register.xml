@@ -13,40 +13,37 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="32dp"
-
         android:text="@string/registration"
         android:textAlignment="center"
         android:textSize="24sp" />
 
     <EditText
         android:id="@+id/userNameEditText"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/registrationTextView"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="9dp"
         android:layout_marginRight="64dp"
-
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/user_name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/userEmailEditText"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userNameEditText"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="9dp"
         android:layout_marginRight="64dp"
-
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/email_address"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp" />
 
     <LinearLayout
         android:id="@+id/passwordLayout"
@@ -66,7 +63,8 @@
             android:layout_weight="1"
             android:autofillHints="password"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/userPasswordAgainEditText"
@@ -76,7 +74,8 @@
             android:layout_weight="1"
             android:autofillHints="password"
             android:hint="@string/password_again"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:minHeight="48dp" />
     </LinearLayout>
 
 
@@ -104,8 +103,6 @@
             android:onClick="cancel"
             android:text="@string/cancel" />
 
-
     </LinearLayout>
-
 
 </RelativeLayout>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -56,10 +57,10 @@ public class CategoryActivity extends AppCompatActivity {
         mAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         setmAlarmManager();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
 
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.POST_NOTIFICATIONS},
                         1234);
@@ -69,7 +70,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
 
@@ -84,23 +85,17 @@ public class CategoryActivity extends AppCompatActivity {
 
 
     private void setmAlarmManager() {
-//        long repeatInterval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
         long repeatInterval = 60 * 1000;
         long triggertime = SystemClock.elapsedRealtime() + repeatInterval;
         Intent intent = new Intent(this, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            mAlarmManager.canScheduleExactAlarms();
-//        }
         mAlarmManager.setInexactRepeating(
                 AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 triggertime,
                 repeatInterval,
                 pendingIntent
         );
-
     }
-
 
     public void navigateToFruitProducts(View view) {
         Intent intent = new Intent(this, FruitProductActivity.class);

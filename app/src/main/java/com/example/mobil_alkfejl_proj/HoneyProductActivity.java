@@ -47,6 +47,7 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
     private boolean viewRow = true;
     private final int cartItems = 0;
     private TextView honeyProductText;
+    private FirebaseUploader firebaseUploader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
 //        setContentView(R.layout.activity_fruit_product);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            Log.d(LOG_TAG, "Azonositott felhasznalo FRUITPRODUCT");
+            Log.d(LOG_TAG, "Azonositott felhasznalo HONEYPRODUCTS");
         } else {
             Log.d(LOG_TAG, "Nem sikerult bejelentkeztetni a felhasznalot");
             finish();
@@ -151,31 +152,8 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
                     break;
             }
         });
-
-
-//        Spinner querySpinner = findViewById(R.id.querySpinner);
-//        Button queryButton = findViewById(R.id.queryButton);
-//
-//        queryButton.setOnClickListener(v -> {
-//            String selected = querySpinner.getSelectedItem().toString();
-//            switch (selected) {
-//                case "Legjobb értékelés":
-//                    loadTopRatedFruits();
-//                    break;
-//                case "ABC sorrendben":
-//                    loadFruitsAlphabetically();
-//                    break;
-//                case "Legalacsonyabb ár":
-//                    loadLowestPricedFruits();
-//                    break;
-//                case "Legmagasabb ár":
-//                    loadHighestPricedFruits();
-//                    break;
-//            }
-//        });
     }
 
-    private FirebaseUploader firebaseUploader;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -228,9 +206,7 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
-        }
-//        else if (id == R.id.setting_button) {return true;}
-        else if (id == R.id.cart) {
+        } else if (id == R.id.cart) {
             if (user.isAnonymous()) {
                 Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
             } else {
@@ -318,7 +294,6 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
     @Override
     public void deleteItem(ShoppingItem item) {
         firebaseUploader.deleteItem(this, item);
-//        firebaseUploader.queryData();
     }
 
     public void returnToCategories(View view) {

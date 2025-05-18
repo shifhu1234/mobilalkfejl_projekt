@@ -21,9 +21,9 @@
             android:id="@+id/itemImage"
             android:layout_width="128dp"
             android:layout_height="128dp"
+            android:layout_gravity="center_vertical"
             android:layout_weight=".75"
             android:scaleType="fitCenter"
-            android:layout_gravity="center_vertical"
             app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
         <LinearLayout
@@ -36,9 +36,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/itemTitle"
@@ -48,9 +46,8 @@
                     android:text="@string/item_info_placeholder"
                     android:textAppearance="?attr/textAppearanceSubtitle1"
                     android:textColor="?android:textColorSecondary"
-                    android:textStyle="bold"
-                    android:textSize="20sp"  />
-
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -59,8 +56,8 @@
                 style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:isIndicator="true"
-                />
+                android:isIndicator="true" />
+
             <TextView
                 android:id="@+id/subTitle"
                 android:layout_width="wrap_content"
@@ -76,20 +73,19 @@
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="2dp"
                     android:text="@string/item_info_placeholder"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:padding="2dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/priceCurrency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
                     android:text="@string/currency"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginStart="1dp"
-                    />
+                    android:textStyle="bold" />
             </LinearLayout>
 
 

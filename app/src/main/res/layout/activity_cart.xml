@@ -14,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/emptyCartMessage"
@@ -22,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="Üres a kosarad!"
+                android:text="@string/cart_is_empty"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="18sp"
                 android:visibility="gone" />
@@ -32,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/cart_is_empty"
                 android:scrollbars="vertical" />
 
             <LinearLayout

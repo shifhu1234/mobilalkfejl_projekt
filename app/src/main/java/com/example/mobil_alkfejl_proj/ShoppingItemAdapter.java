@@ -44,22 +44,16 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
         this.mContext = context;
 
         mAuth = FirebaseAuth.getInstance();
-//        setContentView(R.layout.activity_fruit_product);
         user = FirebaseAuth.getInstance().getCurrentUser();
-//        if (user != null) {
-//            Log.d(LOG_TAG, "Azonositott felhasznalo FRUITPRODUCT");
-//        } else {
-//            Log.d(LOG_TAG, "Nem sikerult bejelentkeztetni a felhasznalot");
-//            finish();
-//        }
         if (context instanceof CartUpdateListener) {
             cartUpdateListener = (CartUpdateListener) context;
         }
 
     }
 
+    @NonNull
     @Override
-    public ShoppingItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ShoppingItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.list_item, parent, false));
     }
 
@@ -134,15 +128,16 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
 
 
         }
-        public void deleteItem(ShoppingItem item){
+
+        public void deleteItem(ShoppingItem item) {
 
         }
+
         public void bindTo(ShoppingItem currentItem) {
             mTitleText.setText(currentItem.getName());
             mInfoText.setText(currentItem.getInfo());
             mPriceText.setText(String.valueOf(currentItem.getPrice()));
             mRatingBar.setRating(currentItem.getRatedInfo());
-
 
 
             Glide.with(mContext)
@@ -154,7 +149,7 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                         }
 
                         @Override
-                        public boolean onResourceReady(android.graphics.drawable.Drawable resource, Object model, Target<android.graphics.drawable.Drawable> target, com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource) {
+                        public boolean onResourceReady(@NonNull android.graphics.drawable.Drawable resource, @NonNull Object model, Target<android.graphics.drawable.Drawable> target, @NonNull com.bumptech.glide.load.DataSource dataSource, boolean isFirstResource) {
                             Animation fadeIn = AnimationUtils.loadAnimation(mContext, R.anim.fade_in);
                             mItemImage.startAnimation(fadeIn);
                             return false;
@@ -200,8 +195,8 @@ public class ShoppingItemAdapter extends RecyclerView.Adapter<ShoppingItemAdapte
                 @Override
                 public void onClick(View view) {
                     if (user.isAnonymous()) {
-                            Intent intent = new Intent(mContext, MainActivity.class);
-                            ContextCompat.startActivity(mContext, intent, null);
+                        Intent intent = new Intent(mContext, MainActivity.class);
+                        ContextCompat.startActivity(mContext, intent, null);
                         Toast.makeText(mContext, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent = new Intent(mContext, CartActivity.class);

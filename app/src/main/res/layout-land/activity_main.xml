@@ -18,10 +18,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="128dp"
         android:autofillHints=""
-
         android:ems="10"
         android:hint="@string/email_address"
-        android:inputType="text" />
+        android:inputType="text"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -32,12 +32,11 @@
         android:layout_marginStart="128dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="128dp"
-
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPassword" />
-
+        android:inputType="textPassword"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/loginButton"
@@ -85,31 +84,10 @@
         android:layout_below="@id/registerButton"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="48dp"
-
         android:layout_marginEnd="48dp"
         android:onClick="loginAsGuest"
         android:text="@string/check_as_guest"
-
         app:layout_constraintBottom_toBottomOf="parent"
-
         />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/registrationTextViewButton"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="40dp"-->
-    <!--        android:layout_marginEnd="40dp"-->
-    <!--        android:clickable="true"-->
-    <!--        android:focusable="true"-->
-    <!--        android:onClick="register"-->
-    <!--        android:padding="8dp"-->
-    <!--        android:text="@string/or_register"-->
-    <!--        android:textColor="?android:attr/textColorLink"-->
-    <!--        android:textSize="16sp"-->
-    <!--         android:layout_centerHorizontal="true"-->
-    <!--        android:layout_below="@id/loginButton"-->
-    <!--        />-->
-
 
 </RelativeLayout>

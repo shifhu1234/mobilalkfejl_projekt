@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="Üres a kosarad!"
+                    android:text="@string/cart_is_empty"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp"
                     android:visibility="gone" />
@@ -39,7 +39,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    tools:ignore="NestedWeights" />
 
             </LinearLayout>
 

@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
@@ -37,9 +36,6 @@ public class NotificationHandler {
 
         NotificationChannel channel = new NotificationChannel
                 (CHANNEL_ID, "Friss kosár", NotificationManager.IMPORTANCE_HIGH);
-
-//        channel.enableLights(true);
-//        channel.setLightColor(Color.RED);
         channel.enableVibration(true);
         channel.setDescription("Köszönjük a vásárlást! ;)");
 
@@ -56,7 +52,7 @@ public class NotificationHandler {
                 .setSmallIcon(R.mipmap.ic_launch)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true);;
+                .setAutoCancel(true);
 
         if (Objects.equals(message, "Nézd meg mai napi kínálatunkat!") &&
                 ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {

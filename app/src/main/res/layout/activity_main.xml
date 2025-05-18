@@ -7,20 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--    <TextView-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-
-    <!--        android:fontFamily="casual"-->
-    <!--        android:text="@string/app_name"-->
-    <!--        android:textSize="24sp"-->
-
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/shapeableImageView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
         android:layout_width="128dp"
@@ -35,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/fruitmain">
-
     </com.google.android.material.imageview.ShapeableImageView>
 
     <EditText
@@ -48,9 +33,9 @@
         android:ems="10"
         android:hint="@string/email_address"
         android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         app:layout_constraintVertical_bias="0.25"
         tools:layout_editor_absoluteX="16dp" />
 
@@ -65,9 +50,9 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUserName"
-
         app:layout_constraintVertical_bias="0.075"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -83,7 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         app:layout_constraintVertical_bias="0.1" />
 
@@ -100,7 +84,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:layout_constraintVertical_bias="0.025" />
 
@@ -112,7 +95,6 @@
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:onClick="loginAsGuest"
-
         android:text="@string/check_as_guest"
         app:layout_constraintBottom_toBottomOf="parent"
 
@@ -122,29 +104,5 @@
         app:layout_constraintTop_toBottomOf="@+id/registerButton"
         app:layout_constraintVertical_bias="0.85" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/registerButton"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/loginButton"-->
-    <!--        android:layout_marginStart="96dp"-->
-    <!--        android:layout_marginEnd="96dp"-->
-    <!--        android:clickable="true"-->
-    <!--        android:focusable="true"-->
-    <!--        android:onClick="register"-->
-    <!--        android:padding="8dp"-->
-    <!--        android:text="@string/or_register"-->
-    <!--        android:textColor="?android:attr/textColorLink"-->
-    <!--        android:textSize="16sp"-->
-
-
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/loginButton"-->
-    <!--        app:layout_constraintVertical_bias="0.025"-->
-    <!--        android:textAlignment="center"-->
-    <!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

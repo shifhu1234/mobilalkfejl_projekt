@@ -30,9 +30,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
@@ -52,7 +49,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     private boolean viewRow = true;
     private TextView fruitProductText;
     private CollectionReference mItems;
-
+    private FirebaseUploader firebaseUploader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,10 +107,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             refreshLin.setLayoutParams(params);
         }
 
-//        mFirestore = FirebaseFirestore.getInstance();
-//        mItems = mFirestore.collection("FruitProducts");
-//        queryData();
-
         firebaseUploader = new FirebaseUploader(
                 this,
                 mAdapter,
@@ -128,7 +121,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
 
         firebaseUploader.queryData();
         //        initailizeData();
-
 
         Spinner querySpinner = findViewById(R.id.querySpinner);
         Button queryButton = findViewById(R.id.queryButton);
@@ -163,65 +155,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
 
 
     }
-
-    private void loadTopRatedFruits() {
-        FirebaseFirestore.getInstance().collection("FruitProducts")
-                .whereGreaterThan("ratedInfo", 3.5)
-                .orderBy("ratedInfo", Query.Direction.DESCENDING)
-                .limit(10)
-                .get()
-                .addOnSuccessListener(snapshot -> {
-                    mItemList.clear();
-                    for (DocumentSnapshot doc : snapshot) {
-                        mItemList.add(doc.toObject(ShoppingItem.class));
-                    }
-                    mAdapter.notifyDataSetChanged();
-                });
-    }
-
-    private void loadFruitsAlphabetically() {
-        FirebaseFirestore.getInstance().collection("FruitProducts")
-                .orderBy("name", Query.Direction.ASCENDING)
-                .limit(10)
-                .get()
-                .addOnSuccessListener(snapshot -> {
-                    mItemList.clear();
-                    for (DocumentSnapshot doc : snapshot) {
-                        mItemList.add(doc.toObject(ShoppingItem.class));
-                    }
-                    mAdapter.notifyDataSetChanged();
-                });
-    }
-
-    private void loadLowestPricedFruits() {
-        FirebaseFirestore.getInstance().collection("FruitProducts")
-                .orderBy("price", Query.Direction.ASCENDING)
-                .limit(10)
-                .get()
-                .addOnSuccessListener(snapshot -> {
-                    mItemList.clear();
-                    for (DocumentSnapshot doc : snapshot) {
-                        mItemList.add(doc.toObject(ShoppingItem.class));
-                    }
-                    mAdapter.notifyDataSetChanged();
-                });
-    }
-
-    private void loadHighestPricedFruits() {
-        FirebaseFirestore.getInstance().collection("FruitProducts")
-                .orderBy("price", Query.Direction.DESCENDING)
-                .limit(10)
-                .get()
-                .addOnSuccessListener(snapshot -> {
-                    mItemList.clear();
-                    for (DocumentSnapshot doc : snapshot) {
-                        mItemList.add(doc.toObject(ShoppingItem.class));
-                    }
-                    mAdapter.notifyDataSetChanged();
-                });
-    }
-
-    private FirebaseUploader firebaseUploader;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

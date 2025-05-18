@@ -47,6 +47,7 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
     private boolean viewRow = true;
     private final int cartItems = 0;
     private TextView vegetableProductText;
+    private FirebaseUploader firebaseUploader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +107,6 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             refreshLin.setLayoutParams(params);
         }
 
-//        Log.d(LOG_TAG, "initailizeDataaa");
-//        initailizeData();
         firebaseUploader = new FirebaseUploader(
                 this,
                 mAdapter,
@@ -154,7 +153,6 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
 
     }
 
-    private FirebaseUploader firebaseUploader;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -248,7 +246,6 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        Log.e(LOG_TAG, "ONDESTROY");
     }
 
     @Override

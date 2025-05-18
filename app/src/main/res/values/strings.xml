@@ -46,6 +46,7 @@
     <string name="placeholderaccountpoints">placeholderaccountpoints</string>
     <string name="refresh_list">Terméklista frissítése</string>
     <string name="currency">Ft</string>
+    <string name="cart_is_empty">Üres a kosarad!</string>
 
     <string-array name="fruit_product_names">
         <item>Piros alma</item>

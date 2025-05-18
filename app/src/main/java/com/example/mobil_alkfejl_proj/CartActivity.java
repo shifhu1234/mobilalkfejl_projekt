@@ -4,7 +4,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
-import android.hardware.camera2.CameraAccessException;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -84,35 +83,24 @@ public class CartActivity extends AppCompatActivity {
 
         mNotification = new NotificationHandler(this);
 
-//        for (int i = 0; i < cartItems.size(); i++) {
-//            points += cartItems.get(i).getPrice();
-//        }
-//        points /= 100;
         TextView emptyCartMessage = findViewById(R.id.emptyCartMessage);
         Button payButton = findViewById(R.id.payButton);
         Button returnButton = findViewById(R.id.returnButton);
         Button emptyCartButton = findViewById(R.id.emptyCartButton);
-//        mNotification.send("Test notification");
-//        int finalPoints = points;
-
 
         for (ShoppingItem item : cartItems) {
             points += item.getPrice();
             totalPoints += item.getPrice();
         }
-//        points /= 100;
 
         TextView finalPriceTextView = findViewById(R.id.finalPriceTextView);
-        finalPriceTextView.setText("Végösszeg: " + totalPoints + " Ft");
-
+        finalPriceTextView.setText(String.valueOf("Végösszeg: " + totalPoints + " Ft"));
 
         payButton.setOnClickListener(v -> {
             Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, CategoryActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
-
-//            TextView pointsInput = findViewById(R.id.accountPoints);
 
             if (user != null) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -122,7 +110,7 @@ public class CartActivity extends AppCompatActivity {
                         .addOnSuccessListener(queryDocumentSnapshots -> {
                             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                 long currentPoints = document.getLong("points");
-                                long newPoints = currentPoints + points / 100;
+                                long newPoints = currentPoints + (points / 100);
                                 db.collection("Users").document(document.getId())
                                         .update("points", newPoints)
                                         .addOnSuccessListener(success -> Log.d(LOG_TAG, "Pontok frissitve"))
@@ -132,18 +120,14 @@ public class CartActivity extends AppCompatActivity {
             }
             CartManager.getInstance().clearCart();
             CartActivity.getInstance().clearCart();
-
             mNotification.send("Jóváírtunk számodra " + points / 100 + " pontot!");
 
         });
 
-
         returnButton.setOnClickListener(v -> {
-//                Toast.makeText(CartActivity.this, "Köszönjük a vásárlást!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, CategoryActivity.class);
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             startActivity(intent);
-//                CartManager.getInstance().clearCart();
         });
 
         emptyCartButton.setOnClickListener(v -> {
@@ -154,31 +138,26 @@ public class CartActivity extends AppCompatActivity {
             CartManager.getInstance().clearCart();
             CartActivity.getInstance().clearCart();
         });
+
         if (!cartItems.isEmpty()) {
-
-
             emptyCartMessage.setVisibility(GONE);
             cartRecyclerView.setVisibility(VISIBLE);
             payButton.setVisibility(VISIBLE);
             finalPriceTextView.setVisibility(VISIBLE);
-//            returnButton.setVisibility(VISIBLE);
             emptyCartButton.setVisibility(VISIBLE);
         } else {
             emptyCartMessage.setVisibility(VISIBLE);
             cartRecyclerView.setVisibility(GONE);
             payButton.setVisibility(GONE);
             finalPriceTextView.setVisibility(GONE);
-//            returnButton.setVisibility(GONE);
             emptyCartButton.setVisibility(GONE);
         }
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         TextView finalPriceTextView = findViewById(R.id.finalPriceTextView);
-        finalPriceTextView.setText("Végösszeg: " + points + " Ft");
+        finalPriceTextView.setText(String.valueOf("Végösszeg: " + points + " Ft"));
     }
 }
