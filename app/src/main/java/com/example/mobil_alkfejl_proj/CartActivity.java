@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
+import android.hardware.camera2.CameraAccessException;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -130,7 +131,8 @@ public class CartActivity extends AppCompatActivity {
             }
             CartManager.getInstance().clearCart();
             CartActivity.getInstance().clearCart();
-            mNotification.send("Jóváírtunk számodra " + points/100 + " pontot!");
+
+            mNotification.send("Jóváírtunk számodra " + points / 100 + " pontot!");
 
         });
 

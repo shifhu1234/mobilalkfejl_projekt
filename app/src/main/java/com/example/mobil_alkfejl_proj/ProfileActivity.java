@@ -32,6 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     ImageView image;
 
     TextView accountUserName, accountEmail, accountPoints;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
 //        accountUserName.setText(String.valueOf(user.getDisplayName()));
 //        accountEmail.setText(String.valueOf(user.getEmail()));
         if (user != null) {
-            accountEmail.setText("Email címed: " +user.getEmail());
+            accountEmail.setText("Email címed: " + user.getEmail());
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("Users")
@@ -67,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
                             long points = document.getLong("points");
                             if (name != null) {
                                 accountUserName.setText("Neved: " + name);
-                                accountPoints.setText("Pontjaid száma: " + String.valueOf(points));
+                                accountPoints.setText("Pontjaid száma: " + points);
                             } else {
                                 accountUserName.setText("ANONYMOUS");
                                 accountPoints.setText(String.valueOf(0));
@@ -101,17 +102,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        switch (requestCode) {
-//            case REQUEST_CODE_ASK_PERMISSIONS:
-//                if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    takePicture();
-//                } else {
-//                    Toast.makeText(this, "Jogosultság megtiltva!", Toast.LENGTH_SHORT).show();
-//                }
-//                break;
-//            default:
-//                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_ASK_PERMISSIONS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -169,7 +159,7 @@ public class ProfileActivity extends AppCompatActivity {
     public void changePassword(View view) {
         TextView passwordInput = findViewById(R.id.passwordInput);
         String newPassword = passwordInput.getText().toString().trim();
-        TextView newPasswordConfirmInput =  findViewById(R.id.passwordConfirmInput);
+        TextView newPasswordConfirmInput = findViewById(R.id.passwordConfirmInput);
         String newPasswordConfirm = newPasswordConfirmInput.getText().toString().trim();
 
 
@@ -178,7 +168,7 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
-        if (!newPassword.equals(newPasswordConfirm)){
+        if (!newPassword.equals(newPasswordConfirm)) {
             Toast.makeText(this, "Az jelszavaknak egyezniük kell!", Toast.LENGTH_SHORT).show();
             return;
         }

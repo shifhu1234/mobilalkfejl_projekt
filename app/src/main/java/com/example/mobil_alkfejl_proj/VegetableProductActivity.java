@@ -4,7 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -129,6 +129,11 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             menu.findItem(R.id.log_in_button).setVisible(true);
             logoutButton.setVisible(false);
         }
+
+        if (user.isAnonymous()){
+            MenuItem accountButton = menu.findItem(R.id.account);
+            accountButton.setVisible(false);
+        }
         return true;
     }
 
@@ -149,7 +154,11 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
             return true;
-        } else if (id == R.id.view_selector) {
+        } else if(id == R.id.account){
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+            return true;
+        }else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {
@@ -171,7 +180,9 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
         viewRow = !viewRow;
         item.setIcon(drawableId);
         GridLayoutManager layoutManager = (GridLayoutManager) mRecyclerView.getLayoutManager();
-        layoutManager.setSpanCount(spanCount);
+        if (layoutManager != null) {
+            layoutManager.setSpanCount(spanCount);
+        }
     }
 
     @Override

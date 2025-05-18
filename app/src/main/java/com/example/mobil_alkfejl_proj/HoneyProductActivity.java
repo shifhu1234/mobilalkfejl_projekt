@@ -126,6 +126,12 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             menu.findItem(R.id.log_in_button).setVisible(true);
             logoutButton.setVisible(false);
         }
+
+        if (user.isAnonymous()){
+            MenuItem accountButton = menu.findItem(R.id.account);
+            accountButton.setVisible(false);
+        }
+
         return true;
     }
 
@@ -151,7 +157,11 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
             return true;
-        } else if (id == R.id.view_selector) {
+        } else if(id == R.id.account){
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+            return true;
+        }else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {
@@ -172,7 +182,9 @@ public class HoneyProductActivity extends AppCompatActivity implements CartUpdat
         viewRow = !viewRow;
         item.setIcon(drawableId);
         GridLayoutManager layoutManager = (GridLayoutManager) mRecyclerView.getLayoutManager();
-        layoutManager.setSpanCount(spanCount);
+        if (layoutManager != null) {
+            layoutManager.setSpanCount(spanCount);
+        }
     }
 
 
