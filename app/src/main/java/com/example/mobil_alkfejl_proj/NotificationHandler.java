@@ -5,11 +5,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
 import java.util.Objects;
@@ -56,9 +58,11 @@ public class NotificationHandler {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true);;
 
-        if (Objects.equals(message, "Nézd meg mai napi kínálatunkat!")) {
+        if (Objects.equals(message, "Nézd meg mai napi kínálatunkat!") &&
+                ActivityCompat.checkSelfPermission(mContext, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             builder.setContentTitle("Készen állsz?");
             try {
+
                 CameraManager cameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
                 String cameraId = cameraManager.getCameraIdList()[0];
 

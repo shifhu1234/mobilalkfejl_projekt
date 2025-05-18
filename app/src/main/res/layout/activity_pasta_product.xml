@@ -7,25 +7,49 @@
     android:layout_height="match_parent"
     tools:context=".PastaProductActivity">
 
-
     <RelativeLayout
         android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="64dp"
-        >
+        android:layout_marginBottom="64dp">
 
         <TextView
             android:id="@+id/pastaProductTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/refreshLayout"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:text="@string/log_in_to_buy"
             android:textAlignment="center"
             android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp">
+
+            <Button
+                android:id="@+id/queryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/refresh_list" />
+
+            <Spinner
+                android:id="@+id/querySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:entries="@array/fruit_queries"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pastaRecyclerView"

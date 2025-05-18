@@ -44,6 +44,7 @@
     <string name="back_to_categories">Vissza a főoldalra</string>
     <string name="confirm_new_password">Jelszó megerősítése</string>
     <string name="placeholderaccountpoints">placeholderaccountpoints</string>
+    <string name="refresh_list">Terméklista frissítése</string>
 
     <string-array name="fruit_product_names">
         <item>Piros alma</item>

@@ -11,14 +11,14 @@
         android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="64dp"
         android:layout_marginTop="32dp"
-        >
+        android:layout_marginBottom="64dp">
 
         <TextView
             android:id="@+id/fruitProductTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/refreshLayout"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -26,11 +26,35 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
+        <LinearLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp">
+
+            <Button
+                android:id="@+id/queryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/refresh_list" />
+
+            <Spinner
+                android:id="@+id/querySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:entries="@array/fruit_queries"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fruitRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fruitProductTextView"
+            android:layout_below="@id/refreshLayout"
             android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -43,9 +67,95 @@
         android:layout_marginHorizontal="32dp"
         android:onClick="returnToCategories"
         android:text="@string/back_to_categories"
-        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:id="@+id/main"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="match_parent"-->
+    <!--    tools:context=".FruitProductActivity"-->
+
+    <!--    >-->
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/linearRefresh"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/relativeLayout3"-->
+    <!--        >-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/queryButton"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="32dp"-->
+    <!--            android:text="@string/refresh_list" />-->
+
+    <!--        <Spinner-->
+    <!--            android:id="@+id/querySpinner"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="32dp"-->
+    <!--            android:entries="@array/fruit_queries"-->
+    <!--            android:spinnerMode="dropdown" />-->
+    <!--    </LinearLayout>-->
+
+
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/relativeLayout3"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/linearRefresh">-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/fruitProductTextView"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_alignParentStart="true"-->
+    <!--            android:layout_alignParentTop="true"-->
+    <!--            android:layout_alignParentEnd="true"-->
+    <!--            android:text="@string/log_in_to_buy"-->
+    <!--            android:textAlignment="center"-->
+    <!--            android:textSize="20sp" />-->
+
+
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/fruitRecyclerView"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_below="@id/fruitProductTextView"-->
+    <!--            android:scrollbars="vertical"-->
+    <!--            android:layout_marginBottom="32dp"-->
+    <!--            android:paddingBottom="32dp"-->
+    <!--            android:clipToPadding="false"-->
+    <!--            >-->
+    <!--        </androidx.recyclerview.widget.RecyclerView>-->
+
+    <!--    </RelativeLayout>-->
+    <!--    <Button-->
+    <!--        android:layout_below="@id/fruitRecyclerView"-->
+    <!--        android:id="@+id/return_button"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginHorizontal="32dp"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:onClick="returnToCategories"-->
+    <!--        android:text="@string/back_to_categories"-->
+    <!--        android:textColor="@android:color/white"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->

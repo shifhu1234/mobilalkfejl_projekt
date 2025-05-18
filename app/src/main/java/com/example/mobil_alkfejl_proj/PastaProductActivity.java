@@ -7,11 +7,16 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,7 @@ import java.util.ArrayList;
 public class PastaProductActivity extends AppCompatActivity implements CartUpdateListener {
 
     private static final String LOG_TAG = PastaProductActivity.class.getName();
+    private static final String COLLECTION_NAME = "PastaProducts";
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     private RecyclerView mRecyclerView;
@@ -76,8 +82,29 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
 
         if (user.isAnonymous()) {
             pastaProductText.setVisibility(VISIBLE);
+
+            LinearLayout refreshLin = findViewById(R.id.refreshLayout);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) refreshLin.getLayoutParams();
+            int marginInDp = 32;
+            int marginInPx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    marginInDp,
+                    getResources().getDisplayMetrics()
+            );
+            params.topMargin = marginInPx;
+            refreshLin.setLayoutParams(params);
         } else {
             pastaProductText.setVisibility(GONE);
+            LinearLayout refreshLin = findViewById(R.id.refreshLayout);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) refreshLin.getLayoutParams();
+            int marginInDp = 0;
+            int marginInPx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    marginInDp,
+                    getResources().getDisplayMetrics()
+            );
+            params.topMargin = marginInPx;
+            refreshLin.setLayoutParams(params);
         }
 
 //        Log.d(LOG_TAG, "initailizeDataaa");
@@ -86,7 +113,7 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
                 this,
                 mAdapter,
                 mItemList,
-                "PastaProducts",
+                COLLECTION_NAME,
                 R.array.pasta_product_names,
                 R.array.pasta_product_description,
                 R.array.pasta_product_price,
@@ -95,6 +122,37 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         );
 
         firebaseUploader.queryData();
+
+        Spinner querySpinner = findViewById(R.id.querySpinner);
+        Button queryButton = findViewById(R.id.queryButton);
+
+        queryButton.setOnClickListener(v -> {
+            String selected = querySpinner.getSelectedItem().toString();
+
+            ComplexQuery.QueryCallback callback = itemList -> {
+                mItemList.clear();
+                mItemList.addAll(itemList);
+                mAdapter.notifyDataSetChanged();
+            };
+
+            switch (selected) {
+                case "Legjobb értékelés":
+                    ComplexQuery.topRated(callback, COLLECTION_NAME);
+                    break;
+                case "ABC sorrendben":
+                    ComplexQuery.alphabetical(callback, COLLECTION_NAME);
+                    break;
+                case "Legalacsonyabb ár":
+                    ComplexQuery.lowestPrice(callback, COLLECTION_NAME);
+                    break;
+                case "Legmagasabb ár":
+                    ComplexQuery.highestPrice(callback, COLLECTION_NAME);
+                    break;
+                case "Legjobb ár-érték":
+                    ComplexQuery.smartBuys(callback, COLLECTION_NAME);
+                    break;
+            }
+        });
 
     }
 

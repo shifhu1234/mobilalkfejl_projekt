@@ -7,11 +7,16 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,7 @@ import java.util.ArrayList;
 public class VegetableProductActivity extends AppCompatActivity implements CartUpdateListener {
 
     private static final String LOG_TAG = VegetableProductActivity.class.getName();
+    private static final String COLLECTION_NAME = "VegetableProducts";
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     private RecyclerView mRecyclerView;
@@ -76,8 +82,29 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
 
         if (user.isAnonymous()) {
             vegetableProductText.setVisibility(VISIBLE);
+
+            LinearLayout refreshLin = findViewById(R.id.refreshLayout);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) refreshLin.getLayoutParams();
+            int marginInDp = 32;
+            int marginInPx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    marginInDp,
+                    getResources().getDisplayMetrics()
+            );
+            params.topMargin = marginInPx;
+            refreshLin.setLayoutParams(params);
         } else {
             vegetableProductText.setVisibility(GONE);
+            LinearLayout refreshLin = findViewById(R.id.refreshLayout);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) refreshLin.getLayoutParams();
+            int marginInDp = 0;
+            int marginInPx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    marginInDp,
+                    getResources().getDisplayMetrics()
+            );
+            params.topMargin = marginInPx;
+            refreshLin.setLayoutParams(params);
         }
 
 //        Log.d(LOG_TAG, "initailizeDataaa");
@@ -86,7 +113,7 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
                 this,
                 mAdapter,
                 mItemList,
-                "VegetableProducts",
+                COLLECTION_NAME,
                 R.array.vegetable_product_names,
                 R.array.vegetable_product_description,
                 R.array.vegetable_product_price,
@@ -95,6 +122,36 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
         );
 
         firebaseUploader.queryData();
+        Spinner querySpinner = findViewById(R.id.querySpinner);
+        Button queryButton = findViewById(R.id.queryButton);
+
+        queryButton.setOnClickListener(v -> {
+            String selected = querySpinner.getSelectedItem().toString();
+
+            ComplexQuery.QueryCallback callback = itemList -> {
+                mItemList.clear();
+                mItemList.addAll(itemList);
+                mAdapter.notifyDataSetChanged();
+            };
+
+            switch (selected) {
+                case "Legjobb értékelés":
+                    ComplexQuery.topRated(callback, COLLECTION_NAME);
+                    break;
+                case "ABC sorrendben":
+                    ComplexQuery.alphabetical(callback, COLLECTION_NAME);
+                    break;
+                case "Legalacsonyabb ár":
+                    ComplexQuery.lowestPrice(callback, COLLECTION_NAME);
+                    break;
+                case "Legmagasabb ár":
+                    ComplexQuery.highestPrice(callback, COLLECTION_NAME);
+                    break;
+                case "Legjobb ár-érték":
+                    ComplexQuery.smartBuys(callback, COLLECTION_NAME);
+                    break;
+            }
+        });
 
     }
 
@@ -130,7 +187,7 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             logoutButton.setVisible(false);
         }
 
-        if (user.isAnonymous()){
+        if (user.isAnonymous()) {
             MenuItem accountButton = menu.findItem(R.id.account);
             accountButton.setVisible(false);
         }
@@ -154,11 +211,11 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
 
             return true;
-        } else if(id == R.id.account){
+        } else if (id == R.id.account) {
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
             return true;
-        }else if (id == R.id.view_selector) {
+        } else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {

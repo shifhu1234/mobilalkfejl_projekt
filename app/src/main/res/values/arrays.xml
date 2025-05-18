@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fruit_queries">
+        <item>Legjobb értékelés</item>
+        <item>ABC sorrendben</item>
+        <item>Legalacsonyabb ár</item>
+        <item>Legmagasabb ár</item>
+        <item>Legjobb ár-érték</item>
+    </string-array>
+</resources>

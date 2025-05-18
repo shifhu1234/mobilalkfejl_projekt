@@ -18,14 +18,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +42,7 @@ import android.widget.Toast;
 public class FruitProductActivity extends AppCompatActivity implements CartUpdateListener {
 
     private static final String LOG_TAG = FruitProductActivity.class.getName();
+    private static final String COLLECTION_NAME = "FruitProducts";
     private FirebaseUser user;
     private FirebaseAuth mAuth;
     private RecyclerView mRecyclerView;
@@ -77,8 +87,29 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
 
         if (user.isAnonymous()) {
             fruitProductText.setVisibility(VISIBLE);
+
+            LinearLayout refreshLin = findViewById(R.id.refreshLayout);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) refreshLin.getLayoutParams();
+            int marginInDp = 32;
+            int marginInPx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    marginInDp,
+                    getResources().getDisplayMetrics()
+            );
+            params.topMargin = marginInPx;
+            refreshLin.setLayoutParams(params);
         } else {
             fruitProductText.setVisibility(GONE);
+            LinearLayout refreshLin = findViewById(R.id.refreshLayout);
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) refreshLin.getLayoutParams();
+            int marginInDp = 0;
+            int marginInPx = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    marginInDp,
+                    getResources().getDisplayMetrics()
+            );
+            params.topMargin = marginInPx;
+            refreshLin.setLayoutParams(params);
         }
 
 //        mFirestore = FirebaseFirestore.getInstance();
@@ -89,7 +120,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
                 this,
                 mAdapter,
                 mItemList,
-                "FruitProducts",
+                COLLECTION_NAME,
                 R.array.fruit_product_names,
                 R.array.fruit_product_description,
                 R.array.fruit_product_price,
@@ -99,7 +130,102 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
 
         firebaseUploader.queryData();
         //        initailizeData();
+
+
+
+        Spinner querySpinner = findViewById(R.id.querySpinner);
+        Button queryButton = findViewById(R.id.queryButton);
+
+        queryButton.setOnClickListener(v -> {
+            String selected = querySpinner.getSelectedItem().toString();
+
+            ComplexQuery.QueryCallback callback = itemList -> {
+                mItemList.clear();
+                mItemList.addAll(itemList);
+                mAdapter.notifyDataSetChanged();
+            };
+
+            switch (selected) {
+                case "Legjobb értékelés":
+                    ComplexQuery.topRated(callback, COLLECTION_NAME);
+                    break;
+                case "ABC sorrendben":
+                    ComplexQuery.alphabetical(callback, COLLECTION_NAME);
+                    break;
+                case "Legalacsonyabb ár":
+                    ComplexQuery.lowestPrice(callback, COLLECTION_NAME);
+                    break;
+                case "Legmagasabb ár":
+                    ComplexQuery.highestPrice(callback, COLLECTION_NAME);
+                    break;
+                case "Legjobb ár-érték":
+                    ComplexQuery.smartBuys(callback, COLLECTION_NAME);
+                    break;
+            }
+        });
+
+
+
+
     }
+
+    private void loadTopRatedFruits() {
+        FirebaseFirestore.getInstance().collection("FruitProducts")
+                .whereGreaterThan("ratedInfo", 3.5)
+                .orderBy("ratedInfo", Query.Direction.DESCENDING)
+                .limit(10)
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    mItemList.clear();
+                    for (DocumentSnapshot doc : snapshot) {
+                        mItemList.add(doc.toObject(ShoppingItem.class));
+                    }
+                    mAdapter.notifyDataSetChanged();
+                });
+    }
+
+    private void loadFruitsAlphabetically() {
+        FirebaseFirestore.getInstance().collection("FruitProducts")
+                .orderBy("name", Query.Direction.ASCENDING)
+                .limit(10)
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    mItemList.clear();
+                    for (DocumentSnapshot doc : snapshot) {
+                        mItemList.add(doc.toObject(ShoppingItem.class));
+                    }
+                    mAdapter.notifyDataSetChanged();
+                });
+    }
+
+    private void loadLowestPricedFruits() {
+        FirebaseFirestore.getInstance().collection("FruitProducts")
+                .orderBy("price", Query.Direction.ASCENDING)
+                .limit(10)
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    mItemList.clear();
+                    for (DocumentSnapshot doc : snapshot) {
+                        mItemList.add(doc.toObject(ShoppingItem.class));
+                    }
+                    mAdapter.notifyDataSetChanged();
+                });
+    }
+
+    private void loadHighestPricedFruits() {
+        FirebaseFirestore.getInstance().collection("FruitProducts")
+                .orderBy("price", Query.Direction.DESCENDING)
+                .limit(10)
+                .get()
+                .addOnSuccessListener(snapshot -> {
+                    mItemList.clear();
+                    for (DocumentSnapshot doc : snapshot) {
+                        mItemList.add(doc.toObject(ShoppingItem.class));
+                    }
+                    mAdapter.notifyDataSetChanged();
+                });
+    }
+
     private FirebaseUploader firebaseUploader;
 
     @Override

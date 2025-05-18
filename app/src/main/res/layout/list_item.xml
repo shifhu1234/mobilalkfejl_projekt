@@ -10,7 +10,8 @@
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="20dp"
     card_view:cardBackgroundColor="@android:color/transparent"
-    card_view:contentPadding="2dp">
+    card_view:contentPadding="2dp"
+    >
 
 
     <RelativeLayout
