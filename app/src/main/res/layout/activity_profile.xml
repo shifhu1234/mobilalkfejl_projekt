@@ -129,22 +129,53 @@
             android:onClick="changeUsername"
             />
 
-        <EditText
-            android:id="@+id/passwordInput"
+<!--        <EditText-->
+<!--        android:id="@+id/passwordInput"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/changeUserName"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginHorizontal="32dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:hint="@string/new_password"-->
+<!--        android:inputType="textPassword"-->
+<!--        />-->
+
+        <LinearLayout
+            android:id="@+id/passwordInputRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/changeUserName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:hint="@string/new_password"
-            android:inputType="textPassword" />
+            android:layout_marginHorizontal="8dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <EditText
+                android:layout_marginEnd="4dp"
+                android:id="@+id/passwordInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/new_password"
+                android:inputType="textPassword"
+                />
+
+            <EditText
+                android:layout_marginStart="4dp"
+                android:id="@+id/passwordConfirmInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/confirm_new_password"
+                android:inputType="textPassword" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/changePassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/passwordInput"
+            android:layout_below="@id/passwordInputRow"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="4dp"
             android:text="@string/change_password"

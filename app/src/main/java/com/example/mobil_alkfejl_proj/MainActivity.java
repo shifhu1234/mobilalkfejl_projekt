@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "Felhasznalo bejelentkeztetve");
                     startLogin();
                 } else {
-                    Log.d(LOG_TAG, "Sikertelen felhasználó létrehozás", task.getException());
+                    Log.d(LOG_TAG, "Sikertelens belépés", task.getException());
                     if (task.getException() != null) {
                         Toast.makeText(MainActivity.this, "Sikertelen belépés!", Toast.LENGTH_SHORT).show();
                     }

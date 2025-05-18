@@ -139,6 +139,11 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
+        if (newUsername.length() < 3) {
+            Toast.makeText(this, "Az új felhasználónév legalább 3 karakter hosszú!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Users")
                 .whereEqualTo("email", user.getEmail())
@@ -151,6 +156,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 .addOnSuccessListener(aVoid -> {
                                     accountUserName.setText(newUsername);
                                     Toast.makeText(this, "Felhasználónév frissítve!", Toast.LENGTH_SHORT).show();
+                                    usernameInput.setText("");
                                 })
                                 .addOnFailureListener(failure -> Toast.makeText(this, "HIBA", Toast.LENGTH_SHORT).show());
                     }
@@ -160,14 +166,26 @@ public class ProfileActivity extends AppCompatActivity {
     public void changePassword(View view) {
         TextView passwordInput = findViewById(R.id.passwordInput);
         String newPassword = passwordInput.getText().toString().trim();
+        TextView newPasswordConfirmInput =  findViewById(R.id.passwordConfirmInput);
+        String newPasswordConfirm = newPasswordConfirmInput.getText().toString().trim();
+
 
         if (newPassword.length() < 6) {
             Toast.makeText(this, "Az új jelszó legalább 6 karakter hosszú!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        if (!newPassword.equals(newPasswordConfirm)){
+            Toast.makeText(this, "Az jelszavaknak egyezniük kell!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         user.updatePassword(newPassword)
-                .addOnSuccessListener(success -> Toast.makeText(this, "Jelszó frissítve!", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(success -> {
+                    Toast.makeText(this, "Jelszó frissítve!", Toast.LENGTH_SHORT).show();
+                    passwordInput.setText("");
+                    newPasswordConfirmInput.setText("");
+                })
                 .addOnFailureListener(failure -> Toast.makeText(this, "HIBA", Toast.LENGTH_SHORT).show());
     }
 
