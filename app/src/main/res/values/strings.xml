@@ -48,6 +48,7 @@
     <string name="currency">Ft</string>
     <string name="cart_is_empty">Üres a kosarad!</string>
     <string name="delete_from_cart">Törlés</string>
+    <string name="summary_currency">Végösszeg: 0 Ft</string>
 
     <string-array name="fruit_product_names">
         <item>Piros alma</item>

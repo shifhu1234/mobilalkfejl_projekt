@@ -56,7 +56,6 @@ public class ProfileActivity extends AppCompatActivity {
 //        accountEmail.setText(String.valueOf(user.getEmail()));
         if (user != null) {
             accountEmail.setText("Email címed: " + user.getEmail());
-
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("Users")
                     .whereEqualTo("email", user.getEmail())
@@ -146,7 +145,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 .document(document.getId())
                                 .update("name", newUsername)
                                 .addOnSuccessListener(success -> {
-                                    accountUserName.setText(newUsername);
+                                    accountUserName.setText("Neved: " + newUsername);
                                     Toast.makeText(this, "Felhasználónév frissítve!", Toast.LENGTH_SHORT).show();
                                     usernameInput.setText("");
                                 })
