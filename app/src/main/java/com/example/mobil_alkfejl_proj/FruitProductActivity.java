@@ -6,6 +6,18 @@ import static android.view.View.VISIBLE;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.SearchView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -23,20 +35,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
-
-import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class FruitProductActivity extends AppCompatActivity implements CartUpdateListener {
@@ -132,7 +130,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
         //        initailizeData();
 
 
-
         Spinner querySpinner = findViewById(R.id.querySpinner);
         Button queryButton = findViewById(R.id.queryButton);
 
@@ -163,8 +160,6 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
                     break;
             }
         });
-
-
 
 
     }
@@ -259,7 +254,7 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
             logoutButton.setVisible(false);
         }
 
-        if (user.isAnonymous()){
+        if (user.isAnonymous()) {
             MenuItem accountButton = menu.findItem(R.id.account);
             accountButton.setVisible(false);
         }
@@ -289,11 +284,11 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
                 startActivity(intent);
             }
             return true;
-        }else if(id == R.id.account){
-                Intent intent = new Intent(this, ProfileActivity.class);
-                startActivity(intent);
-                return true;
-        }else if (id == R.id.view_selector) {
+        } else if (id == R.id.account) {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.view_selector) {
             if (viewRow) {
                 changeSpanCount(item, R.drawable.ic_view_gird, 2);
             } else {
@@ -380,20 +375,17 @@ public class FruitProductActivity extends AppCompatActivity implements CartUpdat
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu();
+        if (CartActivity.getInstance() != null) {
+            int cartItems = CartActivity.getInstance().getItemCount();
 
+            if (contentTextView != null) {
+                contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
+            }
 
-
-//        if (CartActivity.getInstance() != null) {
-//            int cartItems = CartActivity.getInstance().getItemCount();
-//
-//            if (contentTextView != null) {
-//                contentTextView.setText(cartItems > 0 ? String.valueOf(cartItems) : "");
-//            }
-//
-//            if (redCircle != null) {
-//                redCircle.setVisibility(cartItems > 0 ? View.VISIBLE : View.GONE);
-//            }
-//        }
+            if (redCircle != null) {
+                redCircle.setVisibility(cartItems > 0 ? View.VISIBLE : View.GONE);
+            }
+        }
     }
 
 

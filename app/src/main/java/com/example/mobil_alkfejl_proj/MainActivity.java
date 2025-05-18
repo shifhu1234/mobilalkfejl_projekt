@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(LOG_TAG, "onResume");
     }
 
+
     @Override
     protected void onPause() {
         super.onPause();

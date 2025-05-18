@@ -4,7 +4,6 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -207,8 +206,12 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
             overridePendingTransition(R.anim.slide_in_row_3, R.anim.slide_in_row_4);
             return true;
         } else if (id == R.id.cart) {
-            Log.d(LOG_TAG, "CART MEGYNOMVA");
-            Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
+            if (user.isAnonymous()) {
+                Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
+            }
 
             return true;
         } else if (id == R.id.account) {
@@ -240,6 +243,12 @@ public class VegetableProductActivity extends AppCompatActivity implements CartU
         if (layoutManager != null) {
             layoutManager.setSpanCount(spanCount);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        Log.e(LOG_TAG, "ONDESTROY");
     }
 
     @Override

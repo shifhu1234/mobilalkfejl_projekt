@@ -211,11 +211,12 @@ public class PastaProductActivity extends AppCompatActivity implements CartUpdat
         }
 //        else if (id == R.id.setting_button) {return true;}
         else if (id == R.id.cart) {
-            Log.d(LOG_TAG, "CART MEGYNOMVA");
-//            Intent intent = new Intent(this, CartActivity.class);
-//            startActivity(intent);
-            Toast.makeText(this, "Hamarosan érkező funckió ;)!", Toast.LENGTH_SHORT).show();
-
+            if (user.isAnonymous()) {
+                Toast.makeText(this, "A vásárláshoz jelentkezz be!", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
+            }
             return true;
         } else if(id == R.id.account){
             Intent intent = new Intent(this, ProfileActivity.class);
